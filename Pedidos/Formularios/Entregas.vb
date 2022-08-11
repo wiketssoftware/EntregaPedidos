@@ -88,15 +88,15 @@ Public Class Entregas
 
         If gTipoDoc = "BV" Then
             Dim wBoleta = DC.T_BoGen.FirstOrDefault(Function(x) x.Boleta = gNumDoc.ToDecimal And x.Local = G_LOCALACTUAL)
-            If wBoleta Is Nothing Then
-
+            If wBoleta IsNot Nothing Then
+                xDetalle.Text = Llenar_Detalle(G_LOCALACTUAL, gTipoDoc, gNumDoc)
             End If
         End If
 
         If gTipoDoc = "FV" Then
             Dim wFactura = DC.T_FvGen.FirstOrDefault(Function(x) x.Factura = gNumDoc.ToDecimal And x.Local = G_LOCALACTUAL)
-            If wFactura Is Nothing Then
-
+            If wFactura IsNot Nothing Then
+                xDetalle.Text = Llenar_Detalle(G_LOCALACTUAL, gTipoDoc, gNumDoc)
             End If
         End If
 
@@ -109,14 +109,40 @@ Public Class Entregas
         xDocumento.Clear()
         xCliente.Clear()
         xNumero.Clear()
+        xDetalle.Clear()
 
-        sTablaPedido.DataSource = New List(Of TablaPedido)
+        sTablaEntregas.DataSource = New List(Of TablaEntregas)
         gTipoDoc = ""
         gNumDoc = 0
         gCliente = ""
         gBotonera.Visible = False
         xBarra.Focus()
     End Sub
+
+    Function Llenar_Detalle(wLocal As Decimal, wTipoDoc As String, wNumDoc As Decimal) As String
+        Dim DC = New SupermercadoDataContext(P_CONEXION)
+        Llenar_Detalle = ""
+
+        If wTipoDoc = "BV" Then
+            Dim wBoleta = DC.T_BoDet.Where(Function(x) x.Boleta = wNumDoc.ToDecimal And x.Local = wLocal)
+            If wBoleta IsNot Nothing Then
+                For Each bol In wBoleta
+                    Dim wArt = DC.T_Articulos.FirstOrDefault(Function(x) x.Articulo = bol.Articulo)
+                    Llenar_Detalle += (bol.Cantidad.ToString & "   " & wArt.Descripcion + vbCrLf)
+                Next
+            End If
+        End If
+
+        If wTipoDoc = "FV" Then
+            Dim wFactura = DC.T_FvDet.Where(Function(x) x.Factura = wNumDoc.ToDecimal And x.Local = wLocal)
+            If wFactura IsNot Nothing Then
+                For Each fac In wFactura
+                    Dim wArt = DC.T_Articulos.FirstOrDefault(Function(x) x.Articulo = fac.Articulo)
+                    Llenar_Detalle += (fac.CantiFac.ToString & "   " & wArt.Descripcion + vbCrLf)
+                Next
+            End If
+        End If
+    End Function
 
     Private Sub bAgregar_Click(sender As Object, e As EventArgs)
         If xBarra.Text.Trim = "" Then
@@ -125,28 +151,28 @@ Public Class Entregas
             Exit Sub
         End If
 
-        Dim wArticulos = CType(sTablaPedido.DataSource, List(Of TablaPedido))
+        Dim wArticulos = CType(sTablaEntregas.DataSource, List(Of TablaEntregas))
 
-        Dim wArticuloIngresado = wArticulos.FirstOrDefault(Function(x) x.Articulo = xBarra.Text.ToDecimal())
+        'Dim wArticuloIngresado = wArticulos.FirstOrDefault(Function(x) x.Articulo = xBarra.Text.ToDecimal())
 
-        If wArticuloIngresado Is Nothing Then
-            Dim wArticulo = New TablaPedido With
-            {
-                .Articulo = xBarra.Text.ToDecimal(),
-                .Descripcion = xDocumento.Text.Trim()
-            }
-            wArticulos.Add(wArticulo)
+        'If wArticuloIngresado Is Nothing Then
+        '    Dim wArticulo = New TablaEntregas With
+        '    {
+        '        .Articulo = xBarra.Text.ToDecimal(),
+        '        .Descripcion = xDocumento.Text.Trim()
+        '    }
+        '    wArticulos.Add(wArticulo)
 
-        End If
+        'End If
 
-        sTablaPedido.Load(wArticulos)
+        sTablaEntregas.Load(wArticulos)
         xBarra.Clear()
         xDocumento.Clear()
         xBarra.Focus()
         xBarra.Tag = ""
     End Sub
 
-    Private Sub sTablaPedido_CurrentItemChanged(sender As Object, e As EventArgs) Handles sTablaPedido.CurrentItemChanged
+    Private Sub sTablaEntregas_CurrentItemChanged(sender As Object, e As EventArgs) Handles sTablaEntregas.CurrentItemChanged
 
     End Sub
 
@@ -232,10 +258,10 @@ Public Class Entregas
     Private Sub xTabla_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles xTabla.CellDoubleClick
         If e.RowIndex = -1 Then Exit Sub
         If e.ColumnIndex = 0 Then
-            Dim wArticulo = DirectCast(xTabla.Rows(e.RowIndex).DataBoundItem, TablaPedido)
-            Dim wArticulos = CType(sTablaPedido.DataSource, List(Of TablaPedido))
+            Dim wArticulo = DirectCast(xTabla.Rows(e.RowIndex).DataBoundItem, TablaEntregas)
+            Dim wArticulos = CType(sTablaEntregas.DataSource, List(Of TablaEntregas))
             wArticulos.Remove(wArticulo)
-            sTablaPedido.Load(wArticulos)
+            sTablaEntregas.Load(wArticulos)
             xBarra.Focus()
         End If
     End Sub
@@ -265,14 +291,58 @@ Public Class Entregas
         gCliente = Mid(wDato, 11, 20)
     End Sub
 
+    Private Sub Ciclo_Tick(sender As Object, e As EventArgs) Handles Ciclo.Tick
+        Actualizar_Pedidos(G_LOCALACTUAL)
+    End Sub
+
+    Sub Actualizar_Pedidos(wLocal As Decimal)
+        Ciclo.Enabled = False
+        bActualizar.Enabled = False
+        Me.Cursor = Cursors.WaitCursor
+
+        Dim wFecha As Date = Now.Date
+        Dim DC = New SupermercadoDataContext(P_CONEXION)
+        Dim wTabla = CType(sTablaEntregas.DataSource, List(Of TablaEntregas))
+
+        sTablaEntregas.DataSource = Nothing
+
+        Dim wBoletas = DC.T_BoGen.Where(Function(x) x.Local = wLocal And x.Fecha >= wFecha And x.Estado = "C")
+        If wBoletas IsNot Nothing Then
+            For Each bol In wBoletas
+                Dim wLineas = New TablaEntregas With
+                {
+                    .Fecha = bol.Fecha,
+                    .Local = bol.Local,
+                    .TipoDoc = "BOLETA DE VENTA",
+                    .NumDoc = bol.Boleta,
+                    .Cliente = "",
+                    .Entregado = "NO"
+                }
+                wTabla.Add(wLineas)
+
+                sTablaEntregas.Load(wTabla)
+            Next
+        End If
+
+        Ciclo.Enabled = True
+        bActualizar.Enabled = True
+        Me.Cursor = Cursors.Default
+
+        xBarra.Focus()
+    End Sub
+
+    Private Sub bActualizar_Click(sender As Object, e As EventArgs) Handles bActualizar.Click
+        Actualizar_Pedidos(G_LOCALACTUAL)
+    End Sub
 End Class
 
-Public Class TablaPedido
+Public Class TablaEntregas
     Sub New()
-        Articulo = 0
-        Descripcion = ""
-        Cantidad = 0
-        Precio = 0
+        Fecha = CDate("01/01/2000")
+        Local = 0
+        TipoDoc = ""
+        NumDoc = 0
+        Cliente = ""
     End Sub
 
     Public ReadOnly Property Eliminar As Image
@@ -281,26 +351,11 @@ Public Class TablaPedido
         End Get
     End Property
 
-    Public Property Articulo As Decimal
-    Public Property Descripcion As String
-    Public Property Cantidad As Decimal
-    Public Property Precio As Double
+    Public Property Fecha As DateTime
+    Public Property Local As Decimal
+    Public Property TipoDoc As String
+    Public Property NumDoc As Double
+    Public Property Cliente As String
+    Public Property Entregado As String
 
-    Public ReadOnly Property Total As Decimal
-        Get
-            Return (Precio * Cantidad).ToDecimal()
-        End Get
-    End Property
-
-    Public ReadOnly Property PrecioMostrar As String
-        Get
-            Return Precio.ToMoney()
-        End Get
-    End Property
-
-    Public ReadOnly Property TotalMostrar As String
-        Get
-            Return Total.ToMoney()
-        End Get
-    End Property
 End Class

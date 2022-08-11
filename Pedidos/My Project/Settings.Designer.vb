@@ -73,6 +73,17 @@ Namespace My
                 Return CType(Me("SupermercadoConnectionString1"),String)
             End Get
         End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=wikets.no-ip.info\SQL2008;Initial Catalog=Supermercado;User ID=wikets"& _ 
+            "")>  _
+        Public ReadOnly Property SupermercadoConnectionString2() As String
+            Get
+                Return CType(Me("SupermercadoConnectionString2"),String)
+            End Get
+        End Property
     End Class
 End Namespace
 

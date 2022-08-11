@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Supermercado" Class="SupermercadoDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=200.111.233.250;Initial Catalog=Supermercado;User ID=wikets" SettingsObjectName="Pedidos.My.MySettings" SettingsPropertyName="SupermercadoConnectionString1" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=wikets.no-ip.info\SQL2008;Initial Catalog=Supermercado;User ID=wikets" SettingsObjectName="Pedidos.My.MySettings" SettingsPropertyName="SupermercadoConnectionString2" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Locales" Member="T_Locales">
     <Type Name="T_Locales">
       <Column Name="Local" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -60,8 +60,8 @@
   </Table>
   <Table Name="dbo.Articulos" Member="T_Articulos">
     <Type Name="T_Articulos">
-      <Column Name="Articulo" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" IsPrimaryKey="true" CanBeNull="true" />
-      <Column Name="Descripcion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Articulo" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(100)" CanBeNull="false" />
       <Column Name="Corta" Type="System.String" DbType="VarChar(16)" CanBeNull="true" />
       <Column Name="Unidad" Type="System.String" DbType="VarChar(3)" CanBeNull="true" />
       <Column Name="UnidadC" Type="System.String" DbType="VarChar(3)" CanBeNull="true" />
@@ -122,7 +122,7 @@
       <Column Name="ID" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Boleta" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="false" />
       <Column Name="POS" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="Fecha" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Fecha" Type="System.DateTime" DbType="DateTime" CanBeNull="false" />
       <Column Name="Caja" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
       <Column Name="Local" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="false" />
       <Column Name="Estado" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
@@ -141,13 +141,13 @@
   <Table Name="dbo.BoDet" Member="T_BoDet">
     <Type Name="T_BoDet">
       <Column Name="ID" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Boleta" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="Local" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Boleta" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="false" />
+      <Column Name="Local" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="false" />
       <Column Name="POS" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
       <Column Name="Fecha" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Articulo" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Articulo" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="false" />
       <Column Name="Barra" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Cantidad" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Cantidad" Type="System.Double" DbType="Float" CanBeNull="false" />
       <Column Name="Precio" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="Total" Type="System.Double" DbType="Float" CanBeNull="true" />
     </Type>
@@ -221,7 +221,7 @@
       <Column Name="Bodega" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
       <Column Name="Pedido" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
       <Column Name="BodegaDes" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="FechaFac" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaFac" Type="System.DateTime" DbType="DateTime" CanBeNull="false" />
       <Column Name="FechaRecep" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="FechaIng" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="FPago" Type="System.String" DbType="Char(2)" CanBeNull="true" />
@@ -277,17 +277,17 @@
   <Table Name="dbo.FvDet" Member="T_FvDet">
     <Type Name="T_FvDet">
       <Column Name="Id" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Factura" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="Local" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Factura" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="false" />
+      <Column Name="Local" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="false" />
       <Column Name="POS" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
       <Column Name="BodegaDes" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
       <Column Name="Pedido" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="Articulo" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Articulo" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="false" />
       <Column Name="Plus" Type="System.String" DbType="Char(20)" CanBeNull="true" />
-      <Column Name="Descripcion" Type="System.String" DbType="Char(500)" CanBeNull="true" />
+      <Column Name="Descripcion" Type="System.String" DbType="Char(500)" CanBeNull="false" />
       <Column Name="CantiRecep" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="KilosRecep" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="CantiFac" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="CantiFac" Type="System.Double" DbType="Float" CanBeNull="false" />
       <Column Name="CantiPack" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="PrecioFac" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="PrecioBruto" Type="System.Double" DbType="Float" CanBeNull="true" />
@@ -310,6 +310,18 @@
       <Column Name="Iva" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="Factor" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="DTE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Entregas" Member="T_Entregas">
+    <Type Name="T_Entregas">
+      <Column Name="Id" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Local" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="TipoDoc" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="NumDoc" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="FechaEmi" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="FechaEnt" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="Entregado" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
 </Database>

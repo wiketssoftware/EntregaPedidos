@@ -85,10 +85,16 @@ Partial Public Class SupermercadoDataContext
     End Sub
   Partial Private Sub DeleteT_FvDet(instance As T_FvDet)
     End Sub
+  Partial Private Sub InsertT_Entregas(instance As T_Entregas)
+    End Sub
+  Partial Private Sub UpdateT_Entregas(instance As T_Entregas)
+    End Sub
+  Partial Private Sub DeleteT_Entregas(instance As T_Entregas)
+    End Sub
   #End Region
 	
 	Public Sub New()
-		MyBase.New(Global.Pedidos.My.MySettings.Default.SupermercadoConnectionString1, mappingSource)
+		MyBase.New(Global.Pedidos.My.MySettings.Default.SupermercadoConnectionString2, mappingSource)
 		OnCreated
 	End Sub
 	
@@ -169,6 +175,12 @@ Partial Public Class SupermercadoDataContext
 	Public ReadOnly Property T_FvDet() As System.Data.Linq.Table(Of T_FvDet)
 		Get
 			Return Me.GetTable(Of T_FvDet)
+		End Get
+	End Property
+	
+	Public ReadOnly Property T_Entregas() As System.Data.Linq.Table(Of T_Entregas)
+		Get
+			Return Me.GetTable(Of T_Entregas)
 		End Get
 	End Property
 End Class
@@ -1377,7 +1389,7 @@ Partial Public Class T_Articulos
 	
 	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
 	
-	Private _Articulo As System.Nullable(Of Decimal)
+	Private _Articulo As Decimal
 	
 	Private _Descripcion As String
 	
@@ -1480,7 +1492,7 @@ Partial Public Class T_Articulos
     End Sub
     Partial Private Sub OnCreated()
     End Sub
-    Partial Private Sub OnArticuloChanging(value As System.Nullable(Of Decimal))
+    Partial Private Sub OnArticuloChanging(value As Decimal)
     End Sub
     Partial Private Sub OnArticuloChanged()
     End Sub
@@ -1680,12 +1692,13 @@ Partial Public Class T_Articulos
 	End Sub
 	
 	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Articulo", DbType:="Decimal(18,0) NOT NULL", IsPrimaryKey:=true)>  _
-	Public Property Articulo() As System.Nullable(Of Decimal)
+	Public Property Articulo() As Decimal
 		Get
 			Return Me._Articulo
 		End Get
 		Set
-			If (Me._Articulo.Equals(value) = false) Then
+			If ((Me._Articulo = value)  _
+						= false) Then
 				Me.OnArticuloChanging(value)
 				Me.SendPropertyChanging
 				Me._Articulo = value
@@ -1695,7 +1708,7 @@ Partial Public Class T_Articulos
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Descripcion", DbType:="VarChar(100)")>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Descripcion", DbType:="VarChar(100)", CanBeNull:=false)>  _
 	Public Property Descripcion() As String
 		Get
 			Return Me._Descripcion
@@ -2584,7 +2597,7 @@ Partial Public Class T_BoGen
 	
 	Private _POS As System.Nullable(Of Decimal)
 	
-	Private _Fecha As System.Nullable(Of Date)
+	Private _Fecha As Date
 	
 	Private _Caja As System.Nullable(Of Decimal)
 	
@@ -2631,7 +2644,7 @@ Partial Public Class T_BoGen
     End Sub
     Partial Private Sub OnPOSChanged()
     End Sub
-    Partial Private Sub OnFechaChanging(value As System.Nullable(Of Date))
+    Partial Private Sub OnFechaChanging(value As Date)
     End Sub
     Partial Private Sub OnFechaChanged()
     End Sub
@@ -2745,12 +2758,13 @@ Partial Public Class T_BoGen
 	End Property
 	
 	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Fecha", DbType:="DateTime")>  _
-	Public Property Fecha() As System.Nullable(Of Date)
+	Public Property Fecha() As Date
 		Get
 			Return Me._Fecha
 		End Get
 		Set
-			If (Me._Fecha.Equals(value) = false) Then
+			If ((Me._Fecha = value)  _
+						= false) Then
 				Me.OnFechaChanging(value)
 				Me.SendPropertyChanging
 				Me._Fecha = value
@@ -2997,19 +3011,19 @@ Partial Public Class T_BoDet
 	
 	Private _ID As Decimal
 	
-	Private _Boleta As System.Nullable(Of Decimal)
+	Private _Boleta As Decimal
 	
-	Private _Local As System.Nullable(Of Decimal)
+	Private _Local As Decimal
 	
 	Private _POS As System.Nullable(Of Decimal)
 	
 	Private _Fecha As System.Nullable(Of Date)
 	
-	Private _Articulo As System.Nullable(Of Decimal)
+	Private _Articulo As Decimal
 	
 	Private _Barra As String
 	
-	Private _Cantidad As System.Nullable(Of Double)
+	Private _Cantidad As Double
 	
 	Private _Precio As System.Nullable(Of Double)
 	
@@ -3026,11 +3040,11 @@ Partial Public Class T_BoDet
     End Sub
     Partial Private Sub OnIDChanged()
     End Sub
-    Partial Private Sub OnBoletaChanging(value As System.Nullable(Of Decimal))
+    Partial Private Sub OnBoletaChanging(value As Decimal)
     End Sub
     Partial Private Sub OnBoletaChanged()
     End Sub
-    Partial Private Sub OnLocalChanging(value As System.Nullable(Of Decimal))
+    Partial Private Sub OnLocalChanging(value As Decimal)
     End Sub
     Partial Private Sub OnLocalChanged()
     End Sub
@@ -3042,7 +3056,7 @@ Partial Public Class T_BoDet
     End Sub
     Partial Private Sub OnFechaChanged()
     End Sub
-    Partial Private Sub OnArticuloChanging(value As System.Nullable(Of Decimal))
+    Partial Private Sub OnArticuloChanging(value As Decimal)
     End Sub
     Partial Private Sub OnArticuloChanged()
     End Sub
@@ -3050,7 +3064,7 @@ Partial Public Class T_BoDet
     End Sub
     Partial Private Sub OnBarraChanged()
     End Sub
-    Partial Private Sub OnCantidadChanging(value As System.Nullable(Of Double))
+    Partial Private Sub OnCantidadChanging(value As Double)
     End Sub
     Partial Private Sub OnCantidadChanged()
     End Sub
@@ -3087,12 +3101,13 @@ Partial Public Class T_BoDet
 	End Property
 	
 	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Boleta", DbType:="Decimal(18,0)")>  _
-	Public Property Boleta() As System.Nullable(Of Decimal)
+	Public Property Boleta() As Decimal
 		Get
 			Return Me._Boleta
 		End Get
 		Set
-			If (Me._Boleta.Equals(value) = false) Then
+			If ((Me._Boleta = value)  _
+						= false) Then
 				Me.OnBoletaChanging(value)
 				Me.SendPropertyChanging
 				Me._Boleta = value
@@ -3103,12 +3118,13 @@ Partial Public Class T_BoDet
 	End Property
 	
 	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Local", DbType:="Decimal(18,0)")>  _
-	Public Property Local() As System.Nullable(Of Decimal)
+	Public Property Local() As Decimal
 		Get
 			Return Me._Local
 		End Get
 		Set
-			If (Me._Local.Equals(value) = false) Then
+			If ((Me._Local = value)  _
+						= false) Then
 				Me.OnLocalChanging(value)
 				Me.SendPropertyChanging
 				Me._Local = value
@@ -3151,12 +3167,13 @@ Partial Public Class T_BoDet
 	End Property
 	
 	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Articulo", DbType:="Decimal(18,0)")>  _
-	Public Property Articulo() As System.Nullable(Of Decimal)
+	Public Property Articulo() As Decimal
 		Get
 			Return Me._Articulo
 		End Get
 		Set
-			If (Me._Articulo.Equals(value) = false) Then
+			If ((Me._Articulo = value)  _
+						= false) Then
 				Me.OnArticuloChanging(value)
 				Me.SendPropertyChanging
 				Me._Articulo = value
@@ -3183,12 +3200,13 @@ Partial Public Class T_BoDet
 	End Property
 	
 	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Cantidad", DbType:="Float")>  _
-	Public Property Cantidad() As System.Nullable(Of Double)
+	Public Property Cantidad() As Double
 		Get
 			Return Me._Cantidad
 		End Get
 		Set
-			If (Me._Cantidad.Equals(value) = false) Then
+			If ((Me._Cantidad = value)  _
+						= false) Then
 				Me.OnCantidadChanging(value)
 				Me.SendPropertyChanging
 				Me._Cantidad = value
@@ -4509,7 +4527,7 @@ Partial Public Class T_FvGen
 	
 	Private _BodegaDes As System.Nullable(Of Decimal)
 	
-	Private _FechaFac As System.Nullable(Of Date)
+	Private _FechaFac As Date
 	
 	Private _FechaRecep As System.Nullable(Of Date)
 	
@@ -4690,12 +4708,13 @@ Partial Public Class T_FvGen
 	End Property
 	
 	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FechaFac", DbType:="DateTime")>  _
-	Public Property FechaFac() As System.Nullable(Of Date)
+	Public Property FechaFac() As Date
 		Get
 			Return Me._FechaFac
 		End Get
 		Set
-			If (Me._FechaFac.Equals(value) = false) Then
+			If ((Me._FechaFac = value)  _
+						= false) Then
 				Me._FechaFac = value
 			End If
 		End Set
@@ -5310,9 +5329,9 @@ Partial Public Class T_FvDet
 	
 	Private _Id As Decimal
 	
-	Private _Factura As System.Nullable(Of Decimal)
+	Private _Factura As Decimal
 	
-	Private _Local As System.Nullable(Of Decimal)
+	Private _Local As Decimal
 	
 	Private _POS As System.Nullable(Of Decimal)
 	
@@ -5320,7 +5339,7 @@ Partial Public Class T_FvDet
 	
 	Private _Pedido As System.Nullable(Of Decimal)
 	
-	Private _Articulo As System.Nullable(Of Decimal)
+	Private _Articulo As Decimal
 	
 	Private _Plus As String
 	
@@ -5330,7 +5349,7 @@ Partial Public Class T_FvDet
 	
 	Private _KilosRecep As System.Nullable(Of Double)
 	
-	Private _CantiFac As System.Nullable(Of Double)
+	Private _CantiFac As Double
 	
 	Private _CantiPack As System.Nullable(Of Double)
 	
@@ -5387,11 +5406,11 @@ Partial Public Class T_FvDet
     End Sub
     Partial Private Sub OnIdChanged()
     End Sub
-    Partial Private Sub OnFacturaChanging(value As System.Nullable(Of Decimal))
+    Partial Private Sub OnFacturaChanging(value As Decimal)
     End Sub
     Partial Private Sub OnFacturaChanged()
     End Sub
-    Partial Private Sub OnLocalChanging(value As System.Nullable(Of Decimal))
+    Partial Private Sub OnLocalChanging(value As Decimal)
     End Sub
     Partial Private Sub OnLocalChanged()
     End Sub
@@ -5407,7 +5426,7 @@ Partial Public Class T_FvDet
     End Sub
     Partial Private Sub OnPedidoChanged()
     End Sub
-    Partial Private Sub OnArticuloChanging(value As System.Nullable(Of Decimal))
+    Partial Private Sub OnArticuloChanging(value As Decimal)
     End Sub
     Partial Private Sub OnArticuloChanged()
     End Sub
@@ -5427,7 +5446,7 @@ Partial Public Class T_FvDet
     End Sub
     Partial Private Sub OnKilosRecepChanged()
     End Sub
-    Partial Private Sub OnCantiFacChanging(value As System.Nullable(Of Double))
+    Partial Private Sub OnCantiFacChanging(value As Double)
     End Sub
     Partial Private Sub OnCantiFacChanged()
     End Sub
@@ -5544,12 +5563,13 @@ Partial Public Class T_FvDet
 	End Property
 	
 	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Factura", DbType:="Decimal(18,0)")>  _
-	Public Property Factura() As System.Nullable(Of Decimal)
+	Public Property Factura() As Decimal
 		Get
 			Return Me._Factura
 		End Get
 		Set
-			If (Me._Factura.Equals(value) = false) Then
+			If ((Me._Factura = value)  _
+						= false) Then
 				Me.OnFacturaChanging(value)
 				Me.SendPropertyChanging
 				Me._Factura = value
@@ -5560,12 +5580,13 @@ Partial Public Class T_FvDet
 	End Property
 	
 	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Local", DbType:="Decimal(18,0)")>  _
-	Public Property Local() As System.Nullable(Of Decimal)
+	Public Property Local() As Decimal
 		Get
 			Return Me._Local
 		End Get
 		Set
-			If (Me._Local.Equals(value) = false) Then
+			If ((Me._Local = value)  _
+						= false) Then
 				Me.OnLocalChanging(value)
 				Me.SendPropertyChanging
 				Me._Local = value
@@ -5624,12 +5645,13 @@ Partial Public Class T_FvDet
 	End Property
 	
 	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Articulo", DbType:="Decimal(18,0)")>  _
-	Public Property Articulo() As System.Nullable(Of Decimal)
+	Public Property Articulo() As Decimal
 		Get
 			Return Me._Articulo
 		End Get
 		Set
-			If (Me._Articulo.Equals(value) = false) Then
+			If ((Me._Articulo = value)  _
+						= false) Then
 				Me.OnArticuloChanging(value)
 				Me.SendPropertyChanging
 				Me._Articulo = value
@@ -5655,7 +5677,7 @@ Partial Public Class T_FvDet
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Descripcion", DbType:="Char(500)")>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Descripcion", DbType:="Char(500)", CanBeNull:=false)>  _
 	Public Property Descripcion() As String
 		Get
 			Return Me._Descripcion
@@ -5704,12 +5726,13 @@ Partial Public Class T_FvDet
 	End Property
 	
 	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CantiFac", DbType:="Float")>  _
-	Public Property CantiFac() As System.Nullable(Of Double)
+	Public Property CantiFac() As Double
 		Get
 			Return Me._CantiFac
 		End Get
 		Set
-			If (Me._CantiFac.Equals(value) = false) Then
+			If ((Me._CantiFac = value)  _
+						= false) Then
 				Me.OnCantiFacChanging(value)
 				Me.SendPropertyChanging
 				Me._CantiFac = value
@@ -6067,6 +6090,226 @@ Partial Public Class T_FvDet
 				Me._DTE = value
 				Me.SendPropertyChanged("DTE")
 				Me.OnDTEChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.Entregas")>  _
+Partial Public Class T_Entregas
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _Id As Decimal
+	
+	Private _Local As Decimal
+	
+	Private _TipoDoc As String
+	
+	Private _NumDoc As Decimal
+	
+	Private _FechaEmi As Date
+	
+	Private _FechaEnt As Date
+	
+	Private _Usuario As String
+	
+	Private _Entregado As String
+	
+    #Region "Definiciones de métodos de extensibilidad"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnIdChanging(value As Decimal)
+    End Sub
+    Partial Private Sub OnIdChanged()
+    End Sub
+    Partial Private Sub OnLocalChanging(value As Decimal)
+    End Sub
+    Partial Private Sub OnLocalChanged()
+    End Sub
+    Partial Private Sub OnTipoDocChanging(value As String)
+    End Sub
+    Partial Private Sub OnTipoDocChanged()
+    End Sub
+    Partial Private Sub OnNumDocChanging(value As Decimal)
+    End Sub
+    Partial Private Sub OnNumDocChanged()
+    End Sub
+    Partial Private Sub OnFechaEmiChanging(value As Date)
+    End Sub
+    Partial Private Sub OnFechaEmiChanged()
+    End Sub
+    Partial Private Sub OnFechaEntChanging(value As Date)
+    End Sub
+    Partial Private Sub OnFechaEntChanged()
+    End Sub
+    Partial Private Sub OnUsuarioChanging(value As String)
+    End Sub
+    Partial Private Sub OnUsuarioChanged()
+    End Sub
+    Partial Private Sub OnEntregadoChanging(value As String)
+    End Sub
+    Partial Private Sub OnEntregadoChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Id", DbType:="Decimal(18,0) NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property Id() As Decimal
+		Get
+			Return Me._Id
+		End Get
+		Set
+			If ((Me._Id = value)  _
+						= false) Then
+				Me.OnIdChanging(value)
+				Me.SendPropertyChanging
+				Me._Id = value
+				Me.SendPropertyChanged("Id")
+				Me.OnIdChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Local", DbType:="Decimal(18,0) NOT NULL")>  _
+	Public Property Local() As Decimal
+		Get
+			Return Me._Local
+		End Get
+		Set
+			If ((Me._Local = value)  _
+						= false) Then
+				Me.OnLocalChanging(value)
+				Me.SendPropertyChanging
+				Me._Local = value
+				Me.SendPropertyChanged("Local")
+				Me.OnLocalChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TipoDoc", DbType:="VarChar(2) NOT NULL", CanBeNull:=false)>  _
+	Public Property TipoDoc() As String
+		Get
+			Return Me._TipoDoc
+		End Get
+		Set
+			If (String.Equals(Me._TipoDoc, value) = false) Then
+				Me.OnTipoDocChanging(value)
+				Me.SendPropertyChanging
+				Me._TipoDoc = value
+				Me.SendPropertyChanged("TipoDoc")
+				Me.OnTipoDocChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NumDoc", DbType:="Decimal(18,0) NOT NULL")>  _
+	Public Property NumDoc() As Decimal
+		Get
+			Return Me._NumDoc
+		End Get
+		Set
+			If ((Me._NumDoc = value)  _
+						= false) Then
+				Me.OnNumDocChanging(value)
+				Me.SendPropertyChanging
+				Me._NumDoc = value
+				Me.SendPropertyChanged("NumDoc")
+				Me.OnNumDocChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FechaEmi", DbType:="DateTime NOT NULL")>  _
+	Public Property FechaEmi() As Date
+		Get
+			Return Me._FechaEmi
+		End Get
+		Set
+			If ((Me._FechaEmi = value)  _
+						= false) Then
+				Me.OnFechaEmiChanging(value)
+				Me.SendPropertyChanging
+				Me._FechaEmi = value
+				Me.SendPropertyChanged("FechaEmi")
+				Me.OnFechaEmiChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FechaEnt", DbType:="DateTime NOT NULL")>  _
+	Public Property FechaEnt() As Date
+		Get
+			Return Me._FechaEnt
+		End Get
+		Set
+			If ((Me._FechaEnt = value)  _
+						= false) Then
+				Me.OnFechaEntChanging(value)
+				Me.SendPropertyChanging
+				Me._FechaEnt = value
+				Me.SendPropertyChanged("FechaEnt")
+				Me.OnFechaEntChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Usuario", DbType:="VarChar(3) NOT NULL", CanBeNull:=false)>  _
+	Public Property Usuario() As String
+		Get
+			Return Me._Usuario
+		End Get
+		Set
+			If (String.Equals(Me._Usuario, value) = false) Then
+				Me.OnUsuarioChanging(value)
+				Me.SendPropertyChanging
+				Me._Usuario = value
+				Me.SendPropertyChanged("Usuario")
+				Me.OnUsuarioChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Entregado", DbType:="VarChar(1) NOT NULL", CanBeNull:=false)>  _
+	Public Property Entregado() As String
+		Get
+			Return Me._Entregado
+		End Get
+		Set
+			If (String.Equals(Me._Entregado, value) = false) Then
+				Me.OnEntregadoChanging(value)
+				Me.SendPropertyChanging
+				Me._Entregado = value
+				Me.SendPropertyChanged("Entregado")
+				Me.OnEntregadoChanged
 			End If
 		End Set
 	End Property
