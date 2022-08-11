@@ -1,0 +1,315 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Supermercado" Class="SupermercadoDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=200.111.233.250;Initial Catalog=Supermercado;User ID=wikets" SettingsObjectName="Pedidos.My.MySettings" SettingsPropertyName="SupermercadoConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Locales" Member="T_Locales">
+    <Type Name="T_Locales">
+      <Column Name="Local" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NombreLocal" Type="System.String" DbType="Char(30)" CanBeNull="false" />
+      <Column Name="RazonLocal" Type="System.String" DbType="Char(100)" CanBeNull="false" />
+      <Column Name="RutLocal" Type="System.String" DbType="Char(12)" CanBeNull="false" />
+      <Column Name="GiroLocal" Type="System.String" DbType="Char(100)" CanBeNull="false" />
+      <Column Name="DirLocal" Type="System.String" DbType="Char(100)" CanBeNull="false" />
+      <Column Name="Ciudad" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="false" />
+      <Column Name="Comuna" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="false" />
+      <Column Name="EMailLocal" Type="System.String" DbType="NVarChar(50)" CanBeNull="false" />
+      <Column Name="TelefonosLocal" Type="System.String" DbType="Char(50)" CanBeNull="false" />
+      <Column Name="HorarioLocal" Type="System.String" DbType="NVarChar(200)" CanBeNull="false" />
+      <Column Name="MaxDeuda" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="false" />
+      <Column Name="MetaPan" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="false" />
+      <Column Name="MetaLoc" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="false" />
+      <Column Name="EnvioPrecios" Type="System.Boolean" DbType="Bit" CanBeNull="false" />
+      <Column Name="CargadeVentas" Type="System.Boolean" DbType="Bit" CanBeNull="false" />
+      <Column Name="Fabricacion1" Type="System.String" DbType="NVarChar(100)" CanBeNull="false" />
+      <Column Name="Fabricacion2" Type="System.String" DbType="NVarChar(100)" CanBeNull="false" />
+      <Column Name="Fabricacion3" Type="System.String" DbType="NVarChar(100)" CanBeNull="false" />
+      <Column Name="Fabricacion4" Type="System.String" DbType="NVarChar(100)" CanBeNull="false" />
+      <Column Name="Fabricacion5" Type="System.String" DbType="NVarChar(100)" CanBeNull="false" />
+      <Column Name="Fabricacion6" Type="System.String" DbType="NVarChar(100)" CanBeNull="false" />
+      <Column Name="FElectronica" Type="System.Boolean" DbType="Bit" CanBeNull="false" />
+      <Column Name="IP_DTE" Type="System.String" DbType="Char(20)" CanBeNull="false" />
+      <Column Name="FV_Elect" Type="System.Boolean" DbType="Bit" CanBeNull="false" />
+      <Column Name="GD_Elect" Type="System.Boolean" DbType="Bit" CanBeNull="false" />
+      <Column Name="NC_Elect" Type="System.Boolean" DbType="Bit" CanBeNull="false" />
+      <Column Name="FE_Elect" Type="System.Boolean" DbType="Bit" CanBeNull="false" />
+      <Column Name="ND_Elect" Type="System.Boolean" DbType="Bit" CanBeNull="false" />
+      <Column Name="FC_Elect" Type="System.Boolean" DbType="Bit" CanBeNull="false" />
+      <Column Name="BO_Elect" Type="System.Boolean" DbType="Bit" CanBeNull="false" />
+      <Column Name="BE_Elect" Type="System.Boolean" DbType="Bit" CanBeNull="false" />
+      <Column Name="Llave" Type="System.String" DbType="NVarChar(50)" CanBeNull="false" />
+      <Column Name="NResolucion" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="false" />
+      <Column Name="FResolucion" Type="System.DateTime" DbType="Date" CanBeNull="false" />
+      <Column Name="ATECO" Type="System.String" DbType="NVarChar(50)" CanBeNull="false" />
+      <Column Name="Logo" Type="System.Byte[]" DbType="Image" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="SII" Type="System.String" DbType="NVarChar(50)" CanBeNull="false" />
+      <Column Name="Envio_Automatico" Type="System.Boolean" DbType="Bit" CanBeNull="false" />
+      <Column Name="NombreFantasia" Type="System.String" DbType="VarChar(50)" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Usuarios" Member="T_Usuarios">
+    <Type Name="T_Usuarios">
+      <Column Name="Usuario" Type="System.String" DbType="Char(3) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NombreUsr" Type="System.String" DbType="Char(50)" CanBeNull="true" />
+      <Column Name="RutUsr" Type="System.String" DbType="Char(12)" CanBeNull="true" />
+      <Column Name="Acceso" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Cargo" Type="System.String" DbType="Char(30)" CanBeNull="true" />
+      <Column Name="Clave" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="Local" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Estado" Type="System.String" DbType="NVarChar(1)" CanBeNull="true" />
+      <Column Name="Cupo" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="DiaPago" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Articulos" Member="T_Articulos">
+    <Type Name="T_Articulos">
+      <Column Name="Articulo" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" IsPrimaryKey="true" CanBeNull="true" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Corta" Type="System.String" DbType="VarChar(16)" CanBeNull="true" />
+      <Column Name="Unidad" Type="System.String" DbType="VarChar(3)" CanBeNull="true" />
+      <Column Name="UnidadC" Type="System.String" DbType="VarChar(3)" CanBeNull="true" />
+      <Column Name="Unidades" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Seccion" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Familia" Type="System.String" DbType="VarChar(3)" CanBeNull="true" />
+      <Column Name="SubFamilia" Type="System.String" DbType="VarChar(3)" CanBeNull="true" />
+      <Column Name="Marca" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Costo" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="PVenta" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Pesable" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Drenado" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Factor" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="UniMed" Type="System.String" DbType="Char(3)" CanBeNull="true" />
+      <Column Name="PPUM" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ConReceta" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ProdPropia" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Cambio" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="FechaCambio" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UsrCambio" Type="System.String" DbType="Char(3)" CanBeNull="true" />
+      <Column Name="Traspasado" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="SinFleje" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Reproceso" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Unitario" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Paquete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ActivoFijo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Excento" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="CodProv" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Menu" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Obs" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Maestro" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="PLU" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Grupo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PesoPromedio" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Eliminar" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="NoCaja" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Bloqueado" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Envase" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Promocion" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Trazabilidad" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="RecetaMadre" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="RecetaComplementaria" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Lote" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Temperatura" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Rango_Temp_Min" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Rango_Temp_Max" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Ciudades" Member="T_Ciudades">
+    <Type Name="T_Ciudades">
+      <Column Name="Ciudad" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NombreCiudad" Type="System.String" DbType="Char(30)" CanBeNull="true" />
+      <Column Name="AreaCiudad" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BoGen" Member="T_BoGen">
+    <Type Name="T_BoGen">
+      <Column Name="ID" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Boleta" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="false" />
+      <Column Name="POS" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Fecha" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Caja" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Local" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="false" />
+      <Column Name="Estado" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="Cliente" Type="System.String" DbType="VarChar(12)" CanBeNull="true" />
+      <Column Name="Tipo" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="FPago" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Descuentos" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Total" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="DTE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Firma" Type="System.Data.Linq.Binary" DbType="Image NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="TED" Type="System.String" DbType="VarChar(2000) NOT NULL" CanBeNull="false" />
+      <Column Name="Status_DTE" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BoDet" Member="T_BoDet">
+    <Type Name="T_BoDet">
+      <Column Name="ID" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Boleta" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Local" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="POS" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Fecha" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Articulo" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Barra" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Cantidad" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Precio" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Total" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Clientes" Member="T_Clientes">
+    <Type Name="T_Clientes">
+      <Column Name="ID" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Rut" Type="System.String" DbType="NVarChar(12) NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Direccion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Ciudad" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Comuna" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Giro" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Telefonos" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Contacto" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="EMail" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Proveedor" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Fantasia" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="Girador" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CtaCte" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="Banco" Type="System.String" DbType="VarChar(3)" CanBeNull="true" />
+      <Column Name="Mayorista" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Traspaso" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="MaxLinFac" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Credito0" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Credito1" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Credito2" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Credito3" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Credito4" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Credito5" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Credito6" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Credito7" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Credito8" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Credito9" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Credito10" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="PrvDesc1" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="PrvDesc2" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="PrvDesc3" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="PrvFinan" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ConBoleta" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IR" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="PorFlete" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Personal" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Cupo" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Bloqueo_Cre" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Dias_Vencimiento" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Rapel" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Dias_Rapel" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Bloqueado" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Tipo_Prov" Type="System.String" DbType="NVarChar(1)" CanBeNull="true" />
+      <Column Name="Vendedor" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
+      <Column Name="Meta" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Trazabilidad" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FechaMod" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TipoDoc" Member="T_TipoDoc">
+    <Type Name="T_TipoDoc">
+      <Column Name="TipoDoc" Type="System.String" DbType="VarChar(2) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NombreDoc" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Modulo" Type="System.String" DbType="NVarChar(1)" CanBeNull="true" />
+      <Column Name="Electronico" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="TipoDocE" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FvGen" Member="T_FvGen">
+    <Type Name="T_FvGen">
+      <Column Name="Factura" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="false" />
+      <Column Name="Local" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="false" />
+      <Column Name="POS" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Bodega" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Pedido" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="BodegaDes" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="FechaFac" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaRecep" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaIng" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FPago" Type="System.String" DbType="Char(2)" CanBeNull="true" />
+      <Column Name="Cliente" Type="System.String" DbType="Char(12)" CanBeNull="true" />
+      <Column Name="Lista" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Usuario" Type="System.String" DbType="Char(3)" CanBeNull="true" />
+      <Column Name="Estado" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="Motivo" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="TipoFac" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="Cotizacion" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="OCompra" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Guia" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="CCosto" Type="System.String" DbType="Char(30)" CanBeNull="true" />
+      <Column Name="CodigoCC" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Procesada" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="SubTotal" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Descuento" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="TDescuento" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="IVA" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="NetoFac" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="TExento" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="TImpMin" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="TImpBeb" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="TImpVin" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="TImpCer" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="TImpLic" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="TIla" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="TLogistica" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="TIca" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="TIha" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="TImptos" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="IvaFac" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="TotalFac" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="FechaVen" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CtaCancelado" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="CtaFecha" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CtaDocumento" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Despacho" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Patente" Type="System.String" DbType="NVarChar(8)" CanBeNull="true" />
+      <Column Name="RutTrans" Type="System.String" DbType="NVarChar(12)" CanBeNull="true" />
+      <Column Name="RutChofer" Type="System.String" DbType="NVarChar(12)" CanBeNull="true" />
+      <Column Name="NombreChofer" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="DirDest" Type="System.String" DbType="NVarChar(70)" CanBeNull="true" />
+      <Column Name="CiudadDest" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="ComunaDest" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="Observaciones" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="DTE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="TED" Type="System.Xml.Linq.XElement" DbType="Xml" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Firma" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Status_DTE" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FvDet" Member="T_FvDet">
+    <Type Name="T_FvDet">
+      <Column Name="Id" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Factura" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Local" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="POS" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="BodegaDes" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Pedido" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Articulo" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Plus" Type="System.String" DbType="Char(20)" CanBeNull="true" />
+      <Column Name="Descripcion" Type="System.String" DbType="Char(500)" CanBeNull="true" />
+      <Column Name="CantiRecep" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="KilosRecep" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="CantiFac" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="CantiPack" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="PrecioFac" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="PrecioBruto" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SubTotal" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Descuento" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="PorcDescuento" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="TotalNeto" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="IlaMin" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="IlaBeb" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="IlaVin" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="IlaCer" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="IlaLic" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Ila35" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Icar" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Iha" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Costo" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="NotaCredito" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="PVenta" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Logistica" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Iva" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Factor" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="DTE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

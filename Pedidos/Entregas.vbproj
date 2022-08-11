@@ -1,0 +1,653 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9EF6CCCF-51C3-4FB1-9216-CA935EDE6ED2}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>Pedidos.My.MyApplication</StartupObject>
+    <RootNamespace>Pedidos</RootNamespace>
+    <AssemblyName>Pedidos</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>Pedidos.xml</DocumentationFile>
+    <NoWarn>
+    </NoWarn>
+    <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>Pedidos.xml</DocumentationFile>
+    <NoWarn>
+    </NoWarn>
+    <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>On</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\uslero.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ClosedXML">
+      <HintPath>Lib\ClosedXML.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>Lib\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>Lib\CrystalDecisions.ReportSource.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>Lib\CrystalDecisions.Shared.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>Lib\CrystalDecisions.Windows.Forms.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml">
+      <HintPath>Lib\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelToLinq">
+      <HintPath>Lib\ExcelToLinq.dll</HintPath>
+    </Reference>
+    <Reference Include="FastMember.Signed">
+      <HintPath>Lib\FastMember.Signed.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.ComctlLib">
+      <HintPath>Lib\Interop.ComctlLib.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Lib\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Msg">
+      <HintPath>Lib\Msg.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.5.0.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Presentation" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="WinDeco">
+      <HintPath>..\..\TelMed\Lib\WinDeco.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controles\CustomRadio.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controles\SearchButton.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controles\TextAndImageColumn.vb" />
+    <Compile Include="Formularios\Acceso.Designer.vb">
+      <DependentUpon>Acceso.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Acceso.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Buscador\SearchForm.Designer.vb">
+      <DependentUpon>SearchForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Buscador\SearchForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Entregas.Designer.vb">
+      <DependentUpon>Entregas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Entregas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Input\InputObservacionComanda.Designer.vb">
+      <DependentUpon>InputObservacionComanda.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Input\InputObservacionComanda.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="iFormulario.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Objetos\DatosLocal.vb" />
+    <Compile Include="Objetos\Funciones.vb" />
+    <Compile Include="Objetos\PrinterEx.vb" />
+    <Compile Include="Objetos\Settings.vb" />
+    <Compile Include="Objetos\Validacion.vb" />
+    <Compile Include="Datos.designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Datos.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\ReporteComanda.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReporteComanda.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Formularios\Acceso.resx">
+      <DependentUpon>Acceso.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Buscador\SearchForm.resx">
+      <DependentUpon>SearchForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Entregas.dje-NE.resx">
+      <DependentUpon>Entregas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Entregas.resx">
+      <DependentUpon>Entregas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Input\InputObservacionComanda.resx">
+      <DependentUpon>InputObservacionComanda.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\ReporteComanda.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReporteComanda.vb</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\DataSources\TablaPedido.datasource" />
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="App.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Datos.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>Datos.designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Datos.dbml.layout">
+      <DependentUpon>Datos.dbml</DependentUpon>
+    </None>
+    <None Include="settings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\abonos16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\abonos16b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\adeudado24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AgregarOT.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\back_blue2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\back_light_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\back_light_blue3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\barcode24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\buscarArt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calc-ok24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cash16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cash24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cashier-ok24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\check16false_b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\check16false_b1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\check16tfalse_Grilla.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\check16true_b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\check16true_Grilla.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\check24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\check32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clean16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clean16b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clean24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clean32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clipadd.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clipboard_copy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Conectado24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database-check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database-delete2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\db16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\db24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\db32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\descuento24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\discount16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DocumentSend16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DocumentSend24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\editGrid.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\excel24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\excel32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\execute16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\execute24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\execute32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\export_excel24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\find.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\find24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\find32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_open.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gdexpress.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gears24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gears32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gears241.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\help24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\help32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\image24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\imageAdd24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\import_excel24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\invoice_find24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jpg24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ListadoStock24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\load.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\load24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\location16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lock24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\new24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\new32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\null.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\null24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\null32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ok24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ok32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ok64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pagar24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pagos24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PatientResult24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\payment16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Payment24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Payment241.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PaymentCash16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\preview16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\question64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RadioCheck16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RadioUncheck16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh_update24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\remove_table.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\remove24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\remove32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\remove321.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Servicio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settingsJson24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\svr16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\svr24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\svr32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Toolsb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\truck_load_wide16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\up24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\up32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\usuario24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Usuarios24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Lib\ClosedXML.dll" />
+    <Content Include="Lib\DocumentFormat.OpenXml.dll" />
+    <Content Include="Lib\Excel.dll" />
+    <Content Include="Lib\ExcelToLinq.dll" />
+    <Content Include="Lib\FastMember.Signed.dll" />
+    <Content Include="Lib\FlashControlV71.dll" />
+    <Content Include="Lib\ICSharpCode.SharpZipLib.dll" />
+    <Content Include="Lib\idautomation.pdf417.dll" />
+    <Content Include="Lib\Interop.ComctlLib.dll" />
+    <Content Include="Lib\itextsharp.dll" />
+    <Content Include="Lib\LiquidTechnologies.Runtime.Net20.dll" />
+    <Content Include="Lib\log4net.dll" />
+    <Content Include="Lib\LtXmlComHelp12.dll" />
+    <Content Include="Lib\LtXmlComLib12.dll" />
+    <Content Include="Lib\Microsoft.Office.Interop.Excel.dll" />
+    <Content Include="Lib\Microsoft.Vbe.Interop.dll" />
+    <Content Include="Lib\Microsoft.VisualBasic.PowerPacks.Vs.dll" />
+    <Content Include="Lib\Msg.dll" />
+    <Content Include="Lib\office.dll" />
+    <Content Include="Lib\ShockwaveFlashObjects.dll" />
+    <Content Include="Lib\stdole.dll" />
+    <Content Include="Lib\WinDeco.dll" />
+    <Content Include="POS.ico" />
+    <None Include="Resources\uslero.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+</Project>

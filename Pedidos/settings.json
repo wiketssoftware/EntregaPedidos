@@ -1,0 +1,25 @@
+﻿{
+  "Demo": false,
+  "Debug": false,
+  "Base": "Supermercado",
+  "IPServidor": "190.13.151.171",
+  "IPServidorPOS": "wikets.no-ip.info\\SQL2008",
+  "NombreImpresoraTermica": "POS-80",
+  "TiempoConexion": 3,
+  "IngresoAutomatico": true,
+
+  "IdentificadorCliente": "B",
+  "Local": 1,
+  "NombreLocal": "",
+  "Caja": 6,
+  "POS": 6,
+
+  "ComentarioVenta": true,
+  
+  "ImpresoraFrito": "POS-80",
+  "CantidadFrito": 1,
+  
+  "ImpresoraHorno": "Flejera",
+  "CantidadHorno": 1
+
+}
