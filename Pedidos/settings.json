@@ -15,11 +15,14 @@
   "POS": 6,
 
   "ComentarioVenta": true,
-  
+
   "ImpresoraFrito": "POS-80",
   "CantidadFrito": 1,
-  
+
   "ImpresoraHorno": "Flejera",
-  "CantidadHorno": 1
+  "CantidadHorno": 1,
+
+  "Estado_Amarillo": 10,
+  "Estado_Rojo": 20
 
 }

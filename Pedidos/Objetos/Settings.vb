@@ -26,6 +26,9 @@ Public Class Settings
     Public Property CantidadFrito As Integer
     Public Property CantidadHorno As Integer
 
+    Public Property Estado_Amarillo As Integer
+    Public Property Estado_Rojo As Integer
+
     Public Property IngresoAutomatico As Boolean
 
     Private Const NombreArchivo As String = "settings"
@@ -43,6 +46,9 @@ Public Class Settings
         CantidadFrito = 0
         CantidadHorno = 0
         IngresoAutomatico = False
+
+        Estado_Amarillo = 10
+        Estado_Rojo = 20
     End Sub
 
     Public Sub Open()

@@ -24,12 +24,14 @@ Partial Class Entregas
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Entregas))
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.gCabecera = New System.Windows.Forms.GroupBox()
         Me.xFecha = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -57,14 +59,18 @@ Partial Class Entregas
         Me.Imagen = New System.Windows.Forms.PictureBox()
         Me.Ciclo = New System.Windows.Forms.Timer(Me.components)
         Me.bActualizar = New System.Windows.Forms.Button()
+        Me.bLimpiar2 = New System.Windows.Forms.Button()
+        Me.Label6 = New System.Windows.Forms.Label()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.sTablaEntregas = New System.Windows.Forms.BindingSource(Me.components)
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.sTablaEntregas = New System.Windows.Forms.BindingSource(Me.components)
+        Me.NombreLocal = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FechaDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.LocalDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TipoDocDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.NumDocDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ClienteDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Entregado = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.gCabecera.SuspendLayout()
         Me.gPedido.SuspendLayout()
@@ -119,6 +125,7 @@ Partial Class Entregas
         '
         resources.ApplyResources(Me.gPedido, "gPedido")
         Me.gPedido.BackColor = System.Drawing.Color.Transparent
+        Me.gPedido.Controls.Add(Me.Label6)
         Me.gPedido.Controls.Add(Me.Label5)
         Me.gPedido.Controls.Add(Me.xDetalle)
         Me.gPedido.Controls.Add(Me.Label4)
@@ -139,6 +146,7 @@ Partial Class Entregas
         'xDetalle
         '
         resources.ApplyResources(Me.xDetalle, "xDetalle")
+        Me.xDetalle.BackColor = System.Drawing.Color.Yellow
         Me.xDetalle.Name = "xDetalle"
         '
         'Label4
@@ -200,19 +208,13 @@ Partial Class Entregas
         Me.xTabla.AllowUserToDeleteRows = False
         resources.ApplyResources(Me.xTabla, "xTabla")
         Me.xTabla.AutoGenerateColumns = False
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Calibri", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.xTabla.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.xTabla.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.xTabla.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.FechaDataGridViewTextBoxColumn, Me.LocalDataGridViewTextBoxColumn, Me.TipoDocDataGridViewTextBoxColumn, Me.NumDocDataGridViewTextBoxColumn, Me.ClienteDataGridViewTextBoxColumn, Me.Entregado})
+        Me.xTabla.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.NombreLocal, Me.FechaDataGridViewTextBoxColumn, Me.LocalDataGridViewTextBoxColumn, Me.TipoDocDataGridViewTextBoxColumn, Me.NumDocDataGridViewTextBoxColumn, Me.ClienteDataGridViewTextBoxColumn, Me.DataGridViewTextBoxColumn3, Me.Entregado})
         Me.xTabla.DataSource = Me.sTablaEntregas
         Me.xTabla.Name = "xTabla"
+        Me.xTabla.ReadOnly = True
         Me.xTabla.RowHeadersVisible = False
+        Me.xTabla.RowTemplate.Height = 40
         Me.xTabla.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
         '
         'bEntregar
@@ -292,7 +294,7 @@ Partial Class Entregas
         '
         'bPendiente
         '
-        Me.bPendiente.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.bPendiente.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         resources.ApplyResources(Me.bPendiente, "bPendiente")
         Me.bPendiente.Image = Global.Pedidos.My.Resources.Resources.help32
         Me.bPendiente.Name = "bPendiente"
@@ -308,7 +310,7 @@ Partial Class Entregas
         'Ciclo
         '
         Me.Ciclo.Enabled = True
-        Me.Ciclo.Interval = 10000
+        Me.Ciclo.Interval = 60000
         '
         'bActualizar
         '
@@ -318,51 +320,78 @@ Partial Class Entregas
         Me.bActualizar.Name = "bActualizar"
         Me.bActualizar.UseVisualStyleBackColor = False
         '
+        'bLimpiar2
+        '
+        resources.ApplyResources(Me.bLimpiar2, "bLimpiar2")
+        Me.bLimpiar2.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.bLimpiar2.Image = Global.Pedidos.My.Resources.Resources.clean24
+        Me.bLimpiar2.Name = "bLimpiar2"
+        Me.bLimpiar2.UseVisualStyleBackColor = False
+        '
+        'Label6
+        '
+        resources.ApplyResources(Me.Label6, "Label6")
+        Me.Label6.Name = "Label6"
+        '
         'DataGridViewTextBoxColumn1
         '
         Me.DataGridViewTextBoxColumn1.DataPropertyName = "PrecioMostrar"
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.DataGridViewTextBoxColumn1.DefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.DataGridViewTextBoxColumn1.DefaultCellStyle = DataGridViewCellStyle7
+        Me.DataGridViewTextBoxColumn1.FillWeight = 200.0!
         resources.ApplyResources(Me.DataGridViewTextBoxColumn1, "DataGridViewTextBoxColumn1")
         Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
         Me.DataGridViewTextBoxColumn1.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn2
+        '
+        Me.DataGridViewTextBoxColumn2.DataPropertyName = "TotalMostrar"
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.DataGridViewTextBoxColumn2.DefaultCellStyle = DataGridViewCellStyle8
+        resources.ApplyResources(Me.DataGridViewTextBoxColumn2, "DataGridViewTextBoxColumn2")
+        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
+        Me.DataGridViewTextBoxColumn2.ReadOnly = True
         '
         'sTablaEntregas
         '
         Me.sTablaEntregas.DataSource = GetType(Pedidos.TablaEntregas)
         '
-        'DataGridViewTextBoxColumn2
+        'NombreLocal
         '
-        Me.DataGridViewTextBoxColumn2.DataPropertyName = "TotalMostrar"
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.DataGridViewTextBoxColumn2.DefaultCellStyle = DataGridViewCellStyle6
-        resources.ApplyResources(Me.DataGridViewTextBoxColumn2, "DataGridViewTextBoxColumn2")
-        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
-        Me.DataGridViewTextBoxColumn2.ReadOnly = True
+        Me.NombreLocal.DataPropertyName = "NombreLocal"
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Calibri", 18.0!, System.Drawing.FontStyle.Bold)
+        Me.NombreLocal.DefaultCellStyle = DataGridViewCellStyle1
+        Me.NombreLocal.FillWeight = 300.0!
+        resources.ApplyResources(Me.NombreLocal, "NombreLocal")
+        Me.NombreLocal.Name = "NombreLocal"
+        Me.NombreLocal.ReadOnly = True
         '
         'FechaDataGridViewTextBoxColumn
         '
         Me.FechaDataGridViewTextBoxColumn.DataPropertyName = "Fecha"
         DataGridViewCellStyle2.Font = New System.Drawing.Font("Calibri", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FechaDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle2
-        Me.FechaDataGridViewTextBoxColumn.FillWeight = 200.0!
+        Me.FechaDataGridViewTextBoxColumn.FillWeight = 250.0!
         resources.ApplyResources(Me.FechaDataGridViewTextBoxColumn, "FechaDataGridViewTextBoxColumn")
         Me.FechaDataGridViewTextBoxColumn.Name = "FechaDataGridViewTextBoxColumn"
+        Me.FechaDataGridViewTextBoxColumn.ReadOnly = True
         '
         'LocalDataGridViewTextBoxColumn
         '
         Me.LocalDataGridViewTextBoxColumn.DataPropertyName = "Local"
         resources.ApplyResources(Me.LocalDataGridViewTextBoxColumn, "LocalDataGridViewTextBoxColumn")
         Me.LocalDataGridViewTextBoxColumn.Name = "LocalDataGridViewTextBoxColumn"
+        Me.LocalDataGridViewTextBoxColumn.ReadOnly = True
         '
         'TipoDocDataGridViewTextBoxColumn
         '
         Me.TipoDocDataGridViewTextBoxColumn.DataPropertyName = "TipoDoc"
         DataGridViewCellStyle3.Font = New System.Drawing.Font("Calibri", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TipoDocDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle3
-        Me.TipoDocDataGridViewTextBoxColumn.FillWeight = 250.0!
+        Me.TipoDocDataGridViewTextBoxColumn.FillWeight = 350.0!
         resources.ApplyResources(Me.TipoDocDataGridViewTextBoxColumn, "TipoDocDataGridViewTextBoxColumn")
         Me.TipoDocDataGridViewTextBoxColumn.Name = "TipoDocDataGridViewTextBoxColumn"
+        Me.TipoDocDataGridViewTextBoxColumn.ReadOnly = True
         '
         'NumDocDataGridViewTextBoxColumn
         '
@@ -372,23 +401,41 @@ Partial Class Entregas
         Me.NumDocDataGridViewTextBoxColumn.FillWeight = 120.0!
         resources.ApplyResources(Me.NumDocDataGridViewTextBoxColumn, "NumDocDataGridViewTextBoxColumn")
         Me.NumDocDataGridViewTextBoxColumn.Name = "NumDocDataGridViewTextBoxColumn"
+        Me.NumDocDataGridViewTextBoxColumn.ReadOnly = True
         '
         'ClienteDataGridViewTextBoxColumn
         '
         Me.ClienteDataGridViewTextBoxColumn.DataPropertyName = "Cliente"
+        DataGridViewCellStyle5.Font = New System.Drawing.Font("Calibri", 18.0!, System.Drawing.FontStyle.Bold)
+        Me.ClienteDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle5
+        Me.ClienteDataGridViewTextBoxColumn.FillWeight = 400.0!
         resources.ApplyResources(Me.ClienteDataGridViewTextBoxColumn, "ClienteDataGridViewTextBoxColumn")
         Me.ClienteDataGridViewTextBoxColumn.Name = "ClienteDataGridViewTextBoxColumn"
+        Me.ClienteDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn3
+        '
+        Me.DataGridViewTextBoxColumn3.DataPropertyName = "Tiempo"
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Calibri", 18.0!, System.Drawing.FontStyle.Bold)
+        Me.DataGridViewTextBoxColumn3.DefaultCellStyle = DataGridViewCellStyle6
+        Me.DataGridViewTextBoxColumn3.FillWeight = 150.0!
+        resources.ApplyResources(Me.DataGridViewTextBoxColumn3, "DataGridViewTextBoxColumn3")
+        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
+        Me.DataGridViewTextBoxColumn3.ReadOnly = True
         '
         'Entregado
         '
         Me.Entregado.DataPropertyName = "Entregado"
         resources.ApplyResources(Me.Entregado, "Entregado")
         Me.Entregado.Name = "Entregado"
+        Me.Entregado.ReadOnly = True
         '
         'Entregas
         '
         resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Controls.Add(Me.bLimpiar2)
         Me.Controls.Add(Me.bActualizar)
         Me.Controls.Add(Me.Imagen)
         Me.Controls.Add(Me.gBotonera)
@@ -448,10 +495,14 @@ Partial Class Entregas
     Friend WithEvents xDetalle As TextBox
     Friend WithEvents Ciclo As Timer
     Public WithEvents bActualizar As Button
+    Public WithEvents bLimpiar2 As Button
+    Friend WithEvents Label6 As Label
+    Friend WithEvents NombreLocal As DataGridViewTextBoxColumn
     Friend WithEvents FechaDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents LocalDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents TipoDocDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents NumDocDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents ClienteDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
     Friend WithEvents Entregado As DataGridViewTextBoxColumn
 End Class
