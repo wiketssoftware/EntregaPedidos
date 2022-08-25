@@ -1153,6 +1153,36 @@ Namespace My.Resources
         '''<summary>
         '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property smile_bien() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("smile_bien", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property smile_mal() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("smile_mal", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property smile_regular() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("smile_regular", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property svr16() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("svr16", resourceCulture)

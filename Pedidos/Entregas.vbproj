@@ -170,6 +170,12 @@
     <Compile Include="Formularios\Input\InputObservacionComanda.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Formularios\Aviso.Designer.vb">
+      <DependentUpon>Aviso.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Aviso.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="iFormulario.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -219,6 +225,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Input\InputObservacionComanda.resx">
       <DependentUpon>InputObservacionComanda.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Aviso.resx">
+      <DependentUpon>Aviso.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -647,6 +656,9 @@
     <Content Include="Lib\stdole.dll" />
     <Content Include="Lib\WinDeco.dll" />
     <Content Include="POS.ico" />
+    <None Include="Resources\smile-regular.png" />
+    <None Include="Resources\smile-mal.png" />
+    <None Include="Resources\smile-bien.png" />
     <None Include="Resources\uslero.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

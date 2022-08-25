@@ -18,8 +18,8 @@ Public Class Entregas
     Public Property G_OBSERVACIONCOMANDA As String
 
     Protected Overrides Function ProcessCmdKey(ByRef msg As Message, ByVal keyData As Keys) As Boolean
-        If keyData = Keys.F1 Then Entregar_Pedido()
-        If keyData = Keys.F5 Then bLimpiar_Click()
+        If keyData = Keys.F1 Then Entregar_Pedido("S")
+        If keyData = Keys.F5 Then Entregar_Pedido("N")
         If keyData = Keys.F7 Then bLimpiar_Click()
         If keyData = Keys.F10 Then Actualizar_Pedidos(G_LOCALACTUAL)
 
@@ -94,6 +94,7 @@ Public Class Entregas
             Dim wBoleta = DC.T_BoGen.FirstOrDefault(Function(x) x.Boleta = gNumDoc.ToDecimal And (x.Local = 1 Or x.Local = 3))
             If wBoleta IsNot Nothing Then
                 xCliente.Text = wBoleta.Observaciones
+                xLugar.Text = wBoleta.Local.ToString
                 xDetalle.Text = Llenar_Detalle(wBoleta.Local, gTipoDoc, gNumDoc)
             End If
         End If
@@ -102,6 +103,7 @@ Public Class Entregas
             Dim wFactura = DC.T_FvGen.FirstOrDefault(Function(x) x.Factura = gNumDoc.ToDecimal And (x.Local = 1 Or x.Local = 3))
             If wFactura IsNot Nothing Then
                 xCliente.Text = wFactura.Observaciones
+                xLugar.Text = wFactura.Local.ToString
                 xDetalle.Text = Llenar_Detalle(wFactura.Local, gTipoDoc, gNumDoc)
             End If
         End If
@@ -241,24 +243,30 @@ Public Class Entregas
 
     Sub Actualizar_Pedidos(wLocal As Decimal)
         Ciclo.Enabled = False
-        bActualizar.Enabled = False
+        bActualizar.Visible = False
         'Me.Cursor = Cursors.WaitCursor
+        xTabla.Visible = False
 
         Dim wNombreLocal As String, wTipoDoc As String
         Dim wFecha As Date = Now.Date
         Dim DC = New SupermercadoDataContext(P_CONEXION)
-        Dim wTabla = CType(sTablaEntregas.DataSource, List(Of TablaEntregas))
+        Dim wTabla = New List(Of TablaEntregas)
         Dim wListaLocales = DC.T_Locales.ToList
         Dim Demora As Double
 
         sTablaEntregas.DataSource = Nothing
 
         'Blasoni debe ver local 1 y 3 como 1
-        Dim wBoletas = DC.T_BoGen.Where(Function(x) (x.Local = 1 Or x.Local = 3) And x.Fecha >= wFecha And x.Estado = "C" And x.Observaciones <> "")
-        If wBoletas IsNot Nothing Then
-            For Each bol In wBoletas
+        Dim wBoletas = DC.T_BoGen.Where(Function(x) (x.Local = 1 Or x.Local = 3) And x.Fecha >= wFecha And x.Estado = EstadosDoc.Normal And x.Observaciones <> "")
+
+        For Each bol In wBoletas
                 DoEvents()
-                Dim datolocal = wListaLocales.FirstOrDefault(Function(x) x.Local = bol.Local)
+
+            If bol.Boleta = 494389 Then
+                Dim a =1
+            End If
+
+            Dim datolocal = wListaLocales.FirstOrDefault(Function(x) x.Local = bol.Local)
                 wNombreLocal = If(datolocal Is Nothing, "", datolocal.NombreLocal)
                 wTipoDoc = _Boleta
                 Demora = DateDiff(DateInterval.Minute, bol.Fecha, Now)
@@ -272,20 +280,21 @@ Public Class Entregas
                     .NumDoc = bol.Boleta,
                     .Cliente = bol.Observaciones,
                     .Tiempo = Demora,
+                    .Smile = If(Demora < Estado_Amarillo, My.Resources.smile_bien, If(Demora >= Estado_Rojo, My.Resources.smile_mal, My.Resources.smile_regular)),
                     .Entregado = "NO"
                 }
                 wTabla.Add(wLineas)
 
-                sTablaEntregas.Load(wTabla)
             Next
-        End If
+            sTablaEntregas.Load(wTabla)
+
 
         Pintar_Grilla()
 
         Ciclo.Enabled = True
-        bActualizar.Enabled = True
+        bActualizar.Visible = True
         'Me.Cursor = Cursors.Default
-
+        xTabla.Visible = True
         xBarra.Focus()
     End Sub
 
@@ -294,10 +303,58 @@ Public Class Entregas
     End Sub
 
     Private Sub bEntregar_Click(sender As Object, e As EventArgs) Handles bEntregar.Click
-        Entregar_Pedido
+        Entregar_Pedido("S")
     End Sub
 
-    Sub Entregar_Pedido()
+    Sub Entregar_Pedido(wModo As String)
+        If Val(xNumero.Text) = 0 Or xDocumento.Text.Trim = "" Or xLugar.Text = "" Then
+            Exit Sub
+        End If
+
+        Dim Ventana As New Aviso
+        Ventana.Show()
+        Ventana.BringToFront()
+
+        Dim DC = New SupermercadoDataContext(P_CONEXION)
+        If xDocumento.Text.Trim = _Boleta Then
+            Dim wBoleta As New T_BoGen
+            Dim qBoleta = DC.T_BoGen.FirstOrDefault(Function(x) x.Boleta = xNumero.Text.ToDecimal And x.Local = xLugar.Text.ToDecimal)
+
+            If qBoleta IsNot Nothing Then
+                wBoleta = qBoleta
+                wBoleta.Estado = EstadosDoc.Entregada
+
+                Dim wEntregas As New T_Entregas
+                Dim qEntregas = DC.T_Entregas.FirstOrDefault(Function(x) x.TipoDoc = "BV" And x.NumDoc = xNumero.Text.ToDecimal And x.Local = xLugar.Text.ToDecimal)
+                If qEntregas IsNot Nothing Then
+                    wEntregas = qEntregas
+                End If
+
+                Ventana.BringToFront()
+
+                wEntregas.Local = xLugar.Text.ToDecimal
+                wEntregas.TipoDoc = "BV"
+                wEntregas.NumDoc = xNumero.Text.ToDecimal
+                wEntregas.FechaEmi = wBoleta.Fecha
+                wEntregas.FechaEnt = Now
+                wEntregas.Usuario = "SYS"
+                wEntregas.Entregado = wModo
+
+                If qEntregas Is Nothing Then
+                    DC.T_Entregas.InsertOnSubmit(wEntregas)
+                End If
+                DC.SubmitChanges()
+                Limpiar()
+
+                Ventana.Show()
+                Ventana.BringToFront()
+
+                Actualizar_Pedidos(G_LOCALACTUAL)
+
+            Else
+                MsgError("Boleta no encontrada")
+            End If
+        End If
 
     End Sub
 
@@ -314,36 +371,40 @@ Public Class Entregas
         Dim documentos = CType(sTablaEntregas.DataSource, List(Of TablaEntregas))
         Dim Demora As Decimal
 
-        Dim wFila As Integer = 0
-        For Each dato In documentos
-            DoEvents()
-            If dato IsNot Nothing Then
-                Demora = DateDiff(DateInterval.Minute, dato.Fecha, Now)
-                If dato.NumDoc = 494466 Then
-                    Dim a = 1
+        Try
+            Dim wFila As Integer = 0
+            For Each dato In documentos
+                DoEvents()
+                If dato IsNot Nothing Then
+                    Demora = DateDiff(DateInterval.Minute, dato.Fecha, Now)
+                    If Demora >= Estado_Amarillo And Demora < Estado_Rojo Then
+                        xTabla.Rows(wFila).DefaultCellStyle.BackColor = Color.Yellow
+                    End If
+                    If Demora >= Estado_Rojo Then
+                        xTabla.Rows(wFila).DefaultCellStyle.BackColor = Color.FromArgb(255, 222, 144)
+                    End If
                 End If
-                If Demora >= Estado_Amarillo And Demora < Estado_Rojo Then
-                    xTabla.Rows(wFila).DefaultCellStyle.BackColor = Color.Yellow
-                End If
-                If Demora >= Estado_Rojo Then
-                    xTabla.Rows(wFila).DefaultCellStyle.BackColor = Color.FromArgb(255, 222, 144)
-                End If
-            End If
-            wFila += 1
-        Next
+                wFila += 1
+            Next
+        Catch ex As Exception
+        End Try
     End Sub
 
     Private Sub xTabla_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles xTabla.CellContentClick
         If e.RowIndex = -1 Or e.ColumnIndex = -1 Then Exit Sub
 
         Dim documento = DirectCast(xTabla.CurrentRow.DataBoundItem, TablaEntregas)
-        xBarra.Text = If(documento.TipoDoc = _Boleta, "BV", "FV") & Strings.Right(("00000000" & documento.NumDoc), 8).Trim
+        xBarra.Text = If(documento.TipoDoc.Trim = _Boleta, "BV", "FV") & Strings.Right(("00000000" & documento.NumDoc), 8).Trim
         xBarra_Validating(sender, Nothing)
 
     End Sub
 
     Private Sub xDocumento_TextChanged(sender As Object, e As EventArgs) Handles xDocumento.TextChanged
 
+    End Sub
+
+    Private Sub bPendiente_Click(sender As Object, e As EventArgs) Handles bPendiente.Click
+        Entregar_Pedido("N")
     End Sub
 End Class
 
@@ -370,6 +431,7 @@ Public Class TablaEntregas
     Public Property NumDoc As Double
     Public Property Cliente As String
     Public Property Tiempo As Double
+    Public Property Smile As Image
     Public Property Entregado As String
 
 End Class

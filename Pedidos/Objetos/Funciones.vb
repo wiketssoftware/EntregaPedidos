@@ -609,6 +609,13 @@ Public Enum ResultadoConexion
     ErrorConexion = 1
     TiempoAgotado = 2
 End Enum
+
+Public Structure EstadosDoc
+    Public Const Anulada As String = "A"
+    Public Const Normal As String = "C"
+    Public Const Entregada As String = "E"
+End Structure
+
 Public Class RespuestaServidor
     Public Resultado As ResultadoConexion
     Public ReadOnly Property IsCompleted As Boolean

@@ -50,12 +50,6 @@
         <elementListCompartment Id="ca998b5c-50f0-41a2-8557-e0dd07bc586b" absoluteBounds="2.765, 4.085, 1.9700000000000002, 6.7876383463541661" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="25566abf-7db9-40bb-9b90-0c6f13e9528d" absoluteBounds="5.625, 0.5, 2, 2.3478011067708335">
-      <DataClassMoniker Name="/SupermercadoDataContext/T_Entregas" />
-      <nestedChildShapes>
-        <elementListCompartment Id="41f6c527-d1a1-4468-abcf-b50736385d20" absoluteBounds="5.64, 0.96, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="61dce83d-0777-4ec9-98cb-fbb8e68f45f5" absoluteBounds="5.625, 3.625, 2, 4.0785139973958326">
       <DataClassMoniker Name="/SupermercadoDataContext/T_BoGen" />
       <nestedChildShapes>
@@ -66,6 +60,12 @@
       <DataClassMoniker Name="/SupermercadoDataContext/T_FvGen" />
       <nestedChildShapes>
         <elementListCompartment Id="5e3ef69e-0205-4828-ada3-1b31aaf8ce27" absoluteBounds="0.51500000000000012, 4.085, 1.9700000000000002, 11.2105712890625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d282ef16-2229-49c2-9734-3e7129769b02" absoluteBounds="5.625, 0.5, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/SupermercadoDataContext/T_Entregas" />
+      <nestedChildShapes>
+        <elementListCompartment Id="05a75585-3a00-4f1c-8d89-5d3f89b7f09c" absoluteBounds="5.64, 0.96, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

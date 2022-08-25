@@ -79,22 +79,22 @@ Partial Public Class SupermercadoDataContext
     End Sub
   Partial Private Sub DeleteT_FvDet(instance As T_FvDet)
     End Sub
-  Partial Private Sub InsertT_Entregas(instance As T_Entregas)
-    End Sub
-  Partial Private Sub UpdateT_Entregas(instance As T_Entregas)
-    End Sub
-  Partial Private Sub DeleteT_Entregas(instance As T_Entregas)
-    End Sub
   Partial Private Sub InsertT_BoGen(instance As T_BoGen)
     End Sub
   Partial Private Sub UpdateT_BoGen(instance As T_BoGen)
     End Sub
   Partial Private Sub DeleteT_BoGen(instance As T_BoGen)
     End Sub
+  Partial Private Sub InsertT_Entregas(instance As T_Entregas)
+    End Sub
+  Partial Private Sub UpdateT_Entregas(instance As T_Entregas)
+    End Sub
+  Partial Private Sub DeleteT_Entregas(instance As T_Entregas)
+    End Sub
   #End Region
 	
 	Public Sub New()
-		MyBase.New(Global.Pedidos.My.MySettings.Default.SupermercadoConnectionString3, mappingSource)
+		MyBase.New(Global.Pedidos.My.MySettings.Default.SupermercadoConnectionString4, mappingSource)
 		OnCreated
 	End Sub
 	
@@ -166,12 +166,6 @@ Partial Public Class SupermercadoDataContext
 		End Get
 	End Property
 	
-	Public ReadOnly Property T_Entregas() As System.Data.Linq.Table(Of T_Entregas)
-		Get
-			Return Me.GetTable(Of T_Entregas)
-		End Get
-	End Property
-	
 	Public ReadOnly Property T_BoGen() As System.Data.Linq.Table(Of T_BoGen)
 		Get
 			Return Me.GetTable(Of T_BoGen)
@@ -181,6 +175,12 @@ Partial Public Class SupermercadoDataContext
 	Public ReadOnly Property T_FvGen() As System.Data.Linq.Table(Of T_FvGen)
 		Get
 			Return Me.GetTable(Of T_FvGen)
+		End Get
+	End Property
+	
+	Public ReadOnly Property T_Entregas() As System.Data.Linq.Table(Of T_Entregas)
+		Get
+			Return Me.GetTable(Of T_Entregas)
 		End Get
 	End Property
 End Class
@@ -4886,226 +4886,6 @@ Partial Public Class T_FvDet
 	End Sub
 End Class
 
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.Entregas")>  _
-Partial Public Class T_Entregas
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _Id As Decimal
-	
-	Private _Local As Decimal
-	
-	Private _TipoDoc As String
-	
-	Private _NumDoc As Decimal
-	
-	Private _FechaEmi As Date
-	
-	Private _FechaEnt As Date
-	
-	Private _Usuario As String
-	
-	Private _Entregado As String
-	
-    #Region "Definiciones de métodos de extensibilidad"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnIdChanging(value As Decimal)
-    End Sub
-    Partial Private Sub OnIdChanged()
-    End Sub
-    Partial Private Sub OnLocalChanging(value As Decimal)
-    End Sub
-    Partial Private Sub OnLocalChanged()
-    End Sub
-    Partial Private Sub OnTipoDocChanging(value As String)
-    End Sub
-    Partial Private Sub OnTipoDocChanged()
-    End Sub
-    Partial Private Sub OnNumDocChanging(value As Decimal)
-    End Sub
-    Partial Private Sub OnNumDocChanged()
-    End Sub
-    Partial Private Sub OnFechaEmiChanging(value As Date)
-    End Sub
-    Partial Private Sub OnFechaEmiChanged()
-    End Sub
-    Partial Private Sub OnFechaEntChanging(value As Date)
-    End Sub
-    Partial Private Sub OnFechaEntChanged()
-    End Sub
-    Partial Private Sub OnUsuarioChanging(value As String)
-    End Sub
-    Partial Private Sub OnUsuarioChanged()
-    End Sub
-    Partial Private Sub OnEntregadoChanging(value As String)
-    End Sub
-    Partial Private Sub OnEntregadoChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Id", DbType:="Decimal(18,0) NOT NULL", IsPrimaryKey:=true)>  _
-	Public Property Id() As Decimal
-		Get
-			Return Me._Id
-		End Get
-		Set
-			If ((Me._Id = value)  _
-						= false) Then
-				Me.OnIdChanging(value)
-				Me.SendPropertyChanging
-				Me._Id = value
-				Me.SendPropertyChanged("Id")
-				Me.OnIdChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Local", DbType:="Decimal(18,0) NOT NULL")>  _
-	Public Property Local() As Decimal
-		Get
-			Return Me._Local
-		End Get
-		Set
-			If ((Me._Local = value)  _
-						= false) Then
-				Me.OnLocalChanging(value)
-				Me.SendPropertyChanging
-				Me._Local = value
-				Me.SendPropertyChanged("Local")
-				Me.OnLocalChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TipoDoc", DbType:="VarChar(2) NOT NULL", CanBeNull:=false)>  _
-	Public Property TipoDoc() As String
-		Get
-			Return Me._TipoDoc
-		End Get
-		Set
-			If (String.Equals(Me._TipoDoc, value) = false) Then
-				Me.OnTipoDocChanging(value)
-				Me.SendPropertyChanging
-				Me._TipoDoc = value
-				Me.SendPropertyChanged("TipoDoc")
-				Me.OnTipoDocChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NumDoc", DbType:="Decimal(18,0) NOT NULL")>  _
-	Public Property NumDoc() As Decimal
-		Get
-			Return Me._NumDoc
-		End Get
-		Set
-			If ((Me._NumDoc = value)  _
-						= false) Then
-				Me.OnNumDocChanging(value)
-				Me.SendPropertyChanging
-				Me._NumDoc = value
-				Me.SendPropertyChanged("NumDoc")
-				Me.OnNumDocChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FechaEmi", DbType:="DateTime NOT NULL")>  _
-	Public Property FechaEmi() As Date
-		Get
-			Return Me._FechaEmi
-		End Get
-		Set
-			If ((Me._FechaEmi = value)  _
-						= false) Then
-				Me.OnFechaEmiChanging(value)
-				Me.SendPropertyChanging
-				Me._FechaEmi = value
-				Me.SendPropertyChanged("FechaEmi")
-				Me.OnFechaEmiChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FechaEnt", DbType:="DateTime NOT NULL")>  _
-	Public Property FechaEnt() As Date
-		Get
-			Return Me._FechaEnt
-		End Get
-		Set
-			If ((Me._FechaEnt = value)  _
-						= false) Then
-				Me.OnFechaEntChanging(value)
-				Me.SendPropertyChanging
-				Me._FechaEnt = value
-				Me.SendPropertyChanged("FechaEnt")
-				Me.OnFechaEntChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Usuario", DbType:="VarChar(3) NOT NULL", CanBeNull:=false)>  _
-	Public Property Usuario() As String
-		Get
-			Return Me._Usuario
-		End Get
-		Set
-			If (String.Equals(Me._Usuario, value) = false) Then
-				Me.OnUsuarioChanging(value)
-				Me.SendPropertyChanging
-				Me._Usuario = value
-				Me.SendPropertyChanged("Usuario")
-				Me.OnUsuarioChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Entregado", DbType:="VarChar(1) NOT NULL", CanBeNull:=false)>  _
-	Public Property Entregado() As String
-		Get
-			Return Me._Entregado
-		End Get
-		Set
-			If (String.Equals(Me._Entregado, value) = false) Then
-				Me.OnEntregadoChanging(value)
-				Me.SendPropertyChanging
-				Me._Entregado = value
-				Me.SendPropertyChanged("Entregado")
-				Me.OnEntregadoChanged
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.BoGen")>  _
 Partial Public Class T_BoGen
 	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
@@ -6333,4 +6113,224 @@ Partial Public Class T_FvGen
 			End If
 		End Set
 	End Property
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.Entregas")>  _
+Partial Public Class T_Entregas
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _Id As Decimal
+	
+	Private _Local As Decimal
+	
+	Private _TipoDoc As String
+	
+	Private _NumDoc As Decimal
+	
+	Private _FechaEmi As Date
+	
+	Private _FechaEnt As Date
+	
+	Private _Usuario As String
+	
+	Private _Entregado As String
+	
+    #Region "Definiciones de métodos de extensibilidad"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnIdChanging(value As Decimal)
+    End Sub
+    Partial Private Sub OnIdChanged()
+    End Sub
+    Partial Private Sub OnLocalChanging(value As Decimal)
+    End Sub
+    Partial Private Sub OnLocalChanged()
+    End Sub
+    Partial Private Sub OnTipoDocChanging(value As String)
+    End Sub
+    Partial Private Sub OnTipoDocChanged()
+    End Sub
+    Partial Private Sub OnNumDocChanging(value As Decimal)
+    End Sub
+    Partial Private Sub OnNumDocChanged()
+    End Sub
+    Partial Private Sub OnFechaEmiChanging(value As Date)
+    End Sub
+    Partial Private Sub OnFechaEmiChanged()
+    End Sub
+    Partial Private Sub OnFechaEntChanging(value As Date)
+    End Sub
+    Partial Private Sub OnFechaEntChanged()
+    End Sub
+    Partial Private Sub OnUsuarioChanging(value As String)
+    End Sub
+    Partial Private Sub OnUsuarioChanged()
+    End Sub
+    Partial Private Sub OnEntregadoChanging(value As String)
+    End Sub
+    Partial Private Sub OnEntregadoChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Id", AutoSync:=AutoSync.OnInsert, DbType:="Decimal(18,0) NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
+	Public Property Id() As Decimal
+		Get
+			Return Me._Id
+		End Get
+		Set
+			If ((Me._Id = value)  _
+						= false) Then
+				Me.OnIdChanging(value)
+				Me.SendPropertyChanging
+				Me._Id = value
+				Me.SendPropertyChanged("Id")
+				Me.OnIdChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Local", DbType:="Decimal(18,0) NOT NULL")>  _
+	Public Property Local() As Decimal
+		Get
+			Return Me._Local
+		End Get
+		Set
+			If ((Me._Local = value)  _
+						= false) Then
+				Me.OnLocalChanging(value)
+				Me.SendPropertyChanging
+				Me._Local = value
+				Me.SendPropertyChanged("Local")
+				Me.OnLocalChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TipoDoc", DbType:="VarChar(2) NOT NULL", CanBeNull:=false)>  _
+	Public Property TipoDoc() As String
+		Get
+			Return Me._TipoDoc
+		End Get
+		Set
+			If (String.Equals(Me._TipoDoc, value) = false) Then
+				Me.OnTipoDocChanging(value)
+				Me.SendPropertyChanging
+				Me._TipoDoc = value
+				Me.SendPropertyChanged("TipoDoc")
+				Me.OnTipoDocChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_NumDoc", DbType:="Decimal(18,0) NOT NULL")>  _
+	Public Property NumDoc() As Decimal
+		Get
+			Return Me._NumDoc
+		End Get
+		Set
+			If ((Me._NumDoc = value)  _
+						= false) Then
+				Me.OnNumDocChanging(value)
+				Me.SendPropertyChanging
+				Me._NumDoc = value
+				Me.SendPropertyChanged("NumDoc")
+				Me.OnNumDocChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FechaEmi", DbType:="DateTime NOT NULL")>  _
+	Public Property FechaEmi() As Date
+		Get
+			Return Me._FechaEmi
+		End Get
+		Set
+			If ((Me._FechaEmi = value)  _
+						= false) Then
+				Me.OnFechaEmiChanging(value)
+				Me.SendPropertyChanging
+				Me._FechaEmi = value
+				Me.SendPropertyChanged("FechaEmi")
+				Me.OnFechaEmiChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FechaEnt", DbType:="DateTime NOT NULL")>  _
+	Public Property FechaEnt() As Date
+		Get
+			Return Me._FechaEnt
+		End Get
+		Set
+			If ((Me._FechaEnt = value)  _
+						= false) Then
+				Me.OnFechaEntChanging(value)
+				Me.SendPropertyChanging
+				Me._FechaEnt = value
+				Me.SendPropertyChanged("FechaEnt")
+				Me.OnFechaEntChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Usuario", DbType:="VarChar(3) NOT NULL", CanBeNull:=false)>  _
+	Public Property Usuario() As String
+		Get
+			Return Me._Usuario
+		End Get
+		Set
+			If (String.Equals(Me._Usuario, value) = false) Then
+				Me.OnUsuarioChanging(value)
+				Me.SendPropertyChanging
+				Me._Usuario = value
+				Me.SendPropertyChanged("Usuario")
+				Me.OnUsuarioChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Entregado", DbType:="VarChar(1) NOT NULL", CanBeNull:=false)>  _
+	Public Property Entregado() As String
+		Get
+			Return Me._Entregado
+		End Get
+		Set
+			If (String.Equals(Me._Entregado, value) = false) Then
+				Me.OnEntregadoChanging(value)
+				Me.SendPropertyChanging
+				Me._Entregado = value
+				Me.SendPropertyChanged("Entregado")
+				Me.OnEntregadoChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
 End Class
