@@ -255,7 +255,7 @@
     <Type Name="T_FvGen">
       <Column Name="Factura" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="false" />
       <Column Name="Local" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="false" />
-      <Column Name="POS" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="POS" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="false" />
       <Column Name="Bodega" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
       <Column Name="Pedido" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
       <Column Name="BodegaDes" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
@@ -309,7 +309,6 @@
       <Column Name="Observaciones" Type="System.String" DbType="VarChar(300)" CanBeNull="false" />
       <Column Name="DTE" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="Status_DTE" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="id" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="dbo.Entregas" Member="T_Entregas">

@@ -7,7 +7,6 @@ Public Class Entregas
 
     Public gTipoDoc As String
     Public gNumDoc As Decimal
-    Public gCliente As String
 
     Const _Boleta = "BOLETA DE VENTA"
     Const _Factura = "FACTURA DE VENTA"
@@ -87,7 +86,7 @@ Public Class Entregas
 
         Dim DC = New SupermercadoDataContext(P_CONEXION)
         Dim doc = DC.T_TipoDoc.FirstOrDefault(Function(x) x.TipoDoc = gTipoDoc)
-        xDocumento.Text = If(doc?.NombreDoc.ToUpper(), "")
+        xDocumento.Text = If(doc?.NombreDoc.ToUpper().Trim, "")
         xNumero.Text = gNumDoc.ToString
 
         If gTipoDoc = "BV" Then
@@ -122,12 +121,12 @@ Public Class Entregas
         xCliente.Clear()
         xNumero.Clear()
         xDetalle.Clear()
+        xLugar.Clear()
 
         ' sTablaEntregas.DataSource = New List(Of TablaEntregas)
 
         gTipoDoc = ""
         gNumDoc = 0
-        gCliente = ""
         gBotonera.Visible = False
         xBarra.Focus()
     End Sub
@@ -157,38 +156,6 @@ Public Class Entregas
         End If
     End Function
 
-    Private Sub bAgregar_Click(sender As Object, e As EventArgs)
-        If xBarra.Text.Trim = "" Then
-            MsgError("Debe ingresar artículo")
-            xBarra.Focus()
-            Exit Sub
-        End If
-
-        Dim wArticulos = CType(sTablaEntregas.DataSource, List(Of TablaEntregas))
-
-        'Dim wArticuloIngresado = wArticulos.FirstOrDefault(Function(x) x.Articulo = xBarra.Text.ToDecimal())
-
-        'If wArticuloIngresado Is Nothing Then
-        '    Dim wArticulo = New TablaEntregas With
-        '    {
-        '        .Articulo = xBarra.Text.ToDecimal(),
-        '        .Descripcion = xDocumento.Text.Trim()
-        '    }
-        '    wArticulos.Add(wArticulo)
-
-        'End If
-
-        sTablaEntregas.Load(wArticulos)
-        xBarra.Clear()
-        xDocumento.Clear()
-        xBarra.Focus()
-        xBarra.Tag = ""
-    End Sub
-
-    Private Sub sTablaEntregas_CurrentItemChanged(sender As Object, e As EventArgs) Handles sTablaEntregas.CurrentItemChanged
-
-    End Sub
-
     Private Sub xAbono_KeyPress(sender As Object, e As KeyPressEventArgs)
         e.NextControl(bEntregar)
     End Sub
@@ -197,19 +164,18 @@ Public Class Entregas
         If Pregunta("¿Desea salir?") Then
             End
         End If
-        End
     End Sub
 
-    Private Sub xTabla_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles xTabla.CellDoubleClick
-        If e.RowIndex = -1 Then Exit Sub
-        If e.ColumnIndex = 0 Then
-            Dim wArticulo = DirectCast(xTabla.Rows(e.RowIndex).DataBoundItem, TablaEntregas)
-            Dim wArticulos = CType(sTablaEntregas.DataSource, List(Of TablaEntregas))
-            wArticulos.Remove(wArticulo)
-            sTablaEntregas.Load(wArticulos)
-            xBarra.Focus()
-        End If
-    End Sub
+    'Private Sub xTabla_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles xTabla.CellDoubleClick
+    '    If e.RowIndex = -1 Then Exit Sub
+    '    If e.ColumnIndex = 0 Then
+    '        Dim wArticulo = DirectCast(xTabla.Rows(e.RowIndex).DataBoundItem, TablaEntregas)
+    '        Dim wArticulos = CType(sTablaEntregas.DataSource, List(Of TablaEntregas))
+    '        wArticulos.Remove(wArticulo)
+    '        sTablaEntregas.Load(wArticulos)
+    '        xBarra.Focus()
+    '    End If
+    'End Sub
 
     Private Sub IngresarPedido_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         Actualizar_Pedidos(G_LOCALACTUAL)
@@ -228,13 +194,11 @@ Public Class Entregas
         If wDato.Trim = "" Then
             gTipoDoc = ""
             gNumDoc = 0
-            gCliente = ""
             Exit Sub
         End If
 
         gTipoDoc = Mid(wDato, 1, 2)
         gNumDoc = (Mid(wDato, 3, 8)).ToDecimal
-        gCliente = Mid(wDato, 11, 20)
     End Sub
 
     Private Sub Ciclo_Tick(sender As Object, e As EventArgs) Handles Ciclo.Tick
@@ -258,20 +222,15 @@ Public Class Entregas
 
         'Blasoni debe ver local 1 y 3 como 1
         Dim wBoletas = DC.T_BoGen.Where(Function(x) (x.Local = 1 Or x.Local = 3) And x.Fecha >= wFecha And x.Estado = EstadosDoc.Normal And x.Observaciones <> "")
-
         For Each bol In wBoletas
-                DoEvents()
-
-            If bol.Boleta = 494389 Then
-                Dim a =1
-            End If
+            DoEvents()
 
             Dim datolocal = wListaLocales.FirstOrDefault(Function(x) x.Local = bol.Local)
-                wNombreLocal = If(datolocal Is Nothing, "", datolocal.NombreLocal)
-                wTipoDoc = _Boleta
-                Demora = DateDiff(DateInterval.Minute, bol.Fecha, Now)
+            wNombreLocal = If(datolocal Is Nothing, "", datolocal.NombreLocal)
+            wTipoDoc = _Boleta
+            Demora = DateDiff(DateInterval.Minute, bol.Fecha, Now)
 
-                Dim wLineas = New TablaEntregas With
+            Dim wLineas = New TablaEntregas With
                 {
                     .Fecha = bol.Fecha,
                     .Local = bol.Local,
@@ -283,12 +242,35 @@ Public Class Entregas
                     .Smile = If(Demora < Estado_Amarillo, My.Resources.smile_bien, If(Demora >= Estado_Rojo, My.Resources.smile_mal, My.Resources.smile_regular)),
                     .Entregado = "NO"
                 }
-                wTabla.Add(wLineas)
-
-            Next
-            sTablaEntregas.Load(wTabla)
+            wTabla.Add(wLineas)
+        Next
 
 
+        Dim wFacturas = DC.T_FvGen.Where(Function(x) (x.Local = 1 Or x.Local = 3) And x.FechaFac >= wFecha And x.Estado = EstadosDoc.Normal And x.Observaciones <> "" And x.POS <> 99)
+        For Each fac In wFacturas
+            DoEvents()
+
+            Dim datolocal = wListaLocales.FirstOrDefault(Function(x) x.Local = fac.Local)
+            wNombreLocal = If(datolocal Is Nothing, "", datolocal.NombreLocal)
+            wTipoDoc = _Factura
+            Demora = DateDiff(DateInterval.Minute, fac.FechaFac, Now)
+
+            Dim wLineas = New TablaEntregas With
+                {
+                    .Fecha = fac.FechaFac,
+                    .Local = fac.Local,
+                    .TipoDoc = wTipoDoc,
+                    .NombreLocal = wNombreLocal,
+                    .NumDoc = fac.Factura,
+                    .Cliente = fac.Observaciones,
+                    .Tiempo = Demora,
+                    .Smile = If(Demora < Estado_Amarillo, My.Resources.smile_bien, If(Demora >= Estado_Rojo, My.Resources.smile_mal, My.Resources.smile_regular)),
+                    .Entregado = "NO"
+                }
+            wTabla.Add(wLineas)
+        Next
+
+        sTablaEntregas.Load(wTabla)
         Pintar_Grilla()
 
         Ciclo.Enabled = True
@@ -353,6 +335,47 @@ Public Class Entregas
 
             Else
                 MsgError("Boleta no encontrada")
+            End If
+        End If
+
+        If xDocumento.Text.Trim = _Factura Then
+            Dim wFactura As New T_FvGen
+            Dim qFactura = DC.T_FvGen.FirstOrDefault(Function(x) x.Factura = xNumero.Text.ToDecimal And x.Local = xLugar.Text.ToDecimal)
+
+            If qFactura IsNot Nothing Then
+                wFactura = qFactura
+                wFactura.Estado = CChar(EstadosDoc.Entregada)
+                DC.SubmitChanges()
+
+                Dim wEntregas As New T_Entregas
+                Dim qEntregas = DC.T_Entregas.FirstOrDefault(Function(x) x.TipoDoc = "FV" And x.NumDoc = xNumero.Text.ToDecimal And x.Local = xLugar.Text.ToDecimal)
+                If qEntregas IsNot Nothing Then
+                    wEntregas = qEntregas
+                End If
+
+                Ventana.BringToFront()
+
+                wEntregas.Local = xLugar.Text.ToDecimal
+                wEntregas.TipoDoc = "FV"
+                wEntregas.NumDoc = xNumero.Text.ToDecimal
+                wEntregas.FechaEmi = wFactura.FechaFac
+                wEntregas.FechaEnt = Now
+                wEntregas.Usuario = "SYS"
+                wEntregas.Entregado = wModo
+
+                If qEntregas Is Nothing Then
+                    DC.T_Entregas.InsertOnSubmit(wEntregas)
+                End If
+                DC.SubmitChanges()
+                Limpiar()
+
+                Ventana.Show()
+                Ventana.BringToFront()
+
+                Actualizar_Pedidos(G_LOCALACTUAL)
+
+            Else
+                MsgError("Factura no encontrada")
             End If
         End If
 

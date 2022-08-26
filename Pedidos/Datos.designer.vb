@@ -5311,7 +5311,7 @@ Partial Public Class T_FvGen
 	
 	Private _Local As Decimal
 	
-	Private _POS As System.Nullable(Of Decimal)
+	Private _POS As Decimal
 	
 	Private _Bodega As System.Nullable(Of Decimal)
 	
@@ -5419,8 +5419,6 @@ Partial Public Class T_FvGen
 	
 	Private _Status_DTE As System.Nullable(Of Decimal)
 	
-	Private _id As Decimal
-	
 	Public Sub New()
 		MyBase.New
 	End Sub
@@ -5452,12 +5450,13 @@ Partial Public Class T_FvGen
 	End Property
 	
 	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_POS", DbType:="Decimal(18,0)")>  _
-	Public Property POS() As System.Nullable(Of Decimal)
+	Public Property POS() As Decimal
 		Get
 			Return Me._POS
 		End Get
 		Set
-			If (Me._POS.Equals(value) = false) Then
+			If ((Me._POS = value)  _
+						= false) Then
 				Me._POS = value
 			End If
 		End Set
@@ -6097,19 +6096,6 @@ Partial Public Class T_FvGen
 		Set
 			If (Me._Status_DTE.Equals(value) = false) Then
 				Me._Status_DTE = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_id", AutoSync:=AutoSync.Always, DbType:="Decimal(18,0) NOT NULL IDENTITY", IsDbGenerated:=true)>  _
-	Public Property id() As Decimal
-		Get
-			Return Me._id
-		End Get
-		Set
-			If ((Me._id = value)  _
-						= false) Then
-				Me._id = value
 			End If
 		End Set
 	End Property
