@@ -9,6 +9,12 @@
     End Sub
 
     Private Sub Acceso_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Dim resultado = Settings.GetSettings()
+        If resultado <> "" Then
+            MsgError($"No se puede utilizar Pedidos {vbCrLf}{resultado}.", "Error crítico")
+            End
+        End If
+
         AUTOMATICO = CONFIGURACION.IngresoAutomatico
         WinDeco2.Visible = AUTOMATICO
         DoEvents()
@@ -53,7 +59,7 @@
     End Function
 
     Private Sub bSalir_Click(sender As Object, e As EventArgs) Handles bSalir.Click
-        DialogResult = DialogResult.Cancel
+        End
     End Sub
 
     Private Sub bIngresar_Click(sender As Object, e As EventArgs) Handles bIngresar.Click
@@ -90,7 +96,7 @@
 
         If Not AUTOMATICO Then
             If xPassword.Text <> Descripta(wUsuario.Clave) Then
-                MsgError("Contraseña invalida ")
+                MsgError("Contraseña inválida ")
                 xPassword.Clear()
                 xPassword.Focus()
                 Exit Sub
@@ -101,6 +107,7 @@
         G_USUARIO = wUsuario.Usuario.Trim()
         G_LOCALACTUAL = CONFIGURACION.Local
         DialogResult = DialogResult.OK
+        EntregaPedidos.Show()
 
     End Sub
 

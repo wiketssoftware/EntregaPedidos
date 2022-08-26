@@ -235,6 +235,7 @@ Partial Class Acceso
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximumSize = New System.Drawing.Size(1920, 1040)
         Me.Name = "Acceso"
+        Me.ShowIcon = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Acceso"
         Me.panel1.ResumeLayout(False)

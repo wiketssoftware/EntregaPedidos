@@ -108,7 +108,7 @@ Partial Class SearchForm
         Me.bAceptar.BackColor = System.Drawing.Color.White
         Me.bAceptar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.bAceptar.Font = New System.Drawing.Font("Arial", 9.0!)
-        Me.bAceptar.Image = Global.Pedidos.My.Resources.Resources.ok24
+        Me.bAceptar.Image = Global.Entregas.My.Resources.Resources.ok24
         Me.bAceptar.Location = New System.Drawing.Point(491, 431)
         Me.bAceptar.Name = "bAceptar"
         Me.bAceptar.Size = New System.Drawing.Size(100, 36)

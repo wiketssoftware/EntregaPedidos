@@ -6,9 +6,9 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{9EF6CCCF-51C3-4FB1-9216-CA935EDE6ED2}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <StartupObject>Pedidos.My.MyApplication</StartupObject>
-    <RootNamespace>Pedidos</RootNamespace>
-    <AssemblyName>Pedidos</AssemblyName>
+    <StartupObject>Entregas.My.MyApplication</StartupObject>
+    <RootNamespace>Entregas</RootNamespace>
+    <AssemblyName>Entregas</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -22,7 +22,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>Pedidos.xml</DocumentationFile>
+    <DocumentationFile>Entregas.xml</DocumentationFile>
     <NoWarn>
     </NoWarn>
     <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
@@ -34,7 +34,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>Pedidos.xml</DocumentationFile>
+    <DocumentationFile>Entregas.xml</DocumentationFile>
     <NoWarn>
     </NoWarn>
     <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
@@ -158,10 +158,10 @@
     <Compile Include="Formularios\Buscador\SearchForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formularios\Entregas.Designer.vb">
-      <DependentUpon>Entregas.vb</DependentUpon>
+    <Compile Include="Formularios\EntregaPedidos.Designer.vb">
+      <DependentUpon>EntregaPedidos.vb</DependentUpon>
     </Compile>
-    <Compile Include="Formularios\Entregas.vb">
+    <Compile Include="Formularios\EntregaPedidos.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Formularios\Input\InputObservacionComanda.Designer.vb">
@@ -217,11 +217,11 @@
     <EmbeddedResource Include="Formularios\Buscador\SearchForm.resx">
       <DependentUpon>SearchForm.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formularios\Entregas.dje-NE.resx">
-      <DependentUpon>Entregas.vb</DependentUpon>
+    <EmbeddedResource Include="Formularios\EntregaPedidos.dje-NE.resx">
+      <DependentUpon>EntregaPedidos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formularios\Entregas.resx">
-      <DependentUpon>Entregas.vb</DependentUpon>
+    <EmbeddedResource Include="Formularios\EntregaPedidos.resx">
+      <DependentUpon>EntregaPedidos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Input\InputObservacionComanda.resx">
       <DependentUpon>InputObservacionComanda.vb</DependentUpon>

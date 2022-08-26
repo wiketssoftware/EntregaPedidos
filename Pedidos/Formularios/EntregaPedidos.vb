@@ -1,6 +1,6 @@
 ﻿Imports System.ComponentModel
 
-Public Class Entregas
+Public Class EntregaPedidos
 
     Implements iFormulario
     Public NombreUsuario As String
@@ -17,8 +17,9 @@ Public Class Entregas
     Public Property G_OBSERVACIONCOMANDA As String
 
     Protected Overrides Function ProcessCmdKey(ByRef msg As Message, ByVal keyData As Keys) As Boolean
-        If keyData = Keys.F1 Then Entregar_Pedido("S")
-        If keyData = Keys.F5 Then Entregar_Pedido("N")
+        If keyData = Keys.F1 Then Entregar_Pedido(EstadosDoc.Entregada)
+        If keyData = Keys.F5 Then Entregar_Pedido(EstadosDoc.NoEstaba)
+        If keyData = Keys.F6 Then Entregar_Pedido(EstadosDoc.Removida)
         If keyData = Keys.F7 Then bLimpiar_Click()
         If keyData = Keys.F10 Then Actualizar_Pedidos(G_LOCALACTUAL)
 
@@ -31,11 +32,17 @@ Public Class Entregas
             MsgError($"No se puede utilizar Pedidos {vbCrLf}{resultado}.", "Error crítico")
             End
         End If
+
         Dim wFormAcceso = New Acceso()
+        wFormAcceso.Visible = False
         If wFormAcceso.ShowDialog = DialogResult.Cancel Then
             End
         End If
-        xLocal.Text = CONFIGURACION.NombreLocal
+
+        Dim DC = New SupermercadoDataContext(P_CONEXION)
+        Dim wListaLocales = DC.T_Locales.ToList
+        Dim datolocal = wListaLocales.FirstOrDefault(Function(x) x.Local = G_LOCALACTUAL)
+        xLocal.Text = If(datolocal Is Nothing, CONFIGURACION.NombreLocal, datolocal.NombreLocal)
 
         lVersion.Text = "Versión " & VERSION
 
@@ -46,7 +53,6 @@ Public Class Entregas
 
         Limpiar()
 
-        Dim DC = New SupermercadoDataContext(P_CONEXION)
         Dim wPar = DC.T_Locales.FirstOrDefault()
         Try
             Dim MatrizImagen() As Byte = CType(wPar.Logo, Byte())
@@ -112,7 +118,7 @@ Public Class Entregas
     End Sub
 
     Private Sub bLimpiar_Click(Optional sender As Object = Nothing, Optional e As EventArgs = Nothing) Handles bLimpiar.Click
-        Limpiar
+        Limpiar()
     End Sub
 
     Sub Limpiar()
@@ -285,7 +291,7 @@ Public Class Entregas
     End Sub
 
     Private Sub bEntregar_Click(sender As Object, e As EventArgs) Handles bEntregar.Click
-        Entregar_Pedido("S")
+        Entregar_Pedido(EstadosDoc.Entregada)
     End Sub
 
     Sub Entregar_Pedido(wModo As String)
@@ -304,27 +310,31 @@ Public Class Entregas
 
             If qBoleta IsNot Nothing Then
                 wBoleta = qBoleta
-                wBoleta.Estado = EstadosDoc.Entregada
+                wBoleta.Estado = wModo
 
-                Dim wEntregas As New T_Entregas
-                Dim qEntregas = DC.T_Entregas.FirstOrDefault(Function(x) x.TipoDoc = "BV" And x.NumDoc = xNumero.Text.ToDecimal And x.Local = xLugar.Text.ToDecimal)
-                If qEntregas IsNot Nothing Then
-                    wEntregas = qEntregas
+                If wModo <> EstadosDoc.Removida Then
+                    Dim wEntregas As New T_Entregas
+                    Dim qEntregas = DC.T_Entregas.FirstOrDefault(Function(x) x.TipoDoc = "BV" And x.NumDoc = xNumero.Text.ToDecimal And x.Local = xLugar.Text.ToDecimal)
+                    If qEntregas IsNot Nothing Then
+                        wEntregas = qEntregas
+                    End If
+
+                    Ventana.BringToFront()
+
+
+                    wEntregas.Local = xLugar.Text.ToDecimal
+                    wEntregas.TipoDoc = "BV"
+                    wEntregas.NumDoc = xNumero.Text.ToDecimal
+                    wEntregas.FechaEmi = wBoleta.Fecha
+                    wEntregas.FechaEnt = Now
+                    wEntregas.Usuario = "SYS"
+                    wEntregas.Entregado = wModo
+
+                    If qEntregas Is Nothing Then
+                        DC.T_Entregas.InsertOnSubmit(wEntregas)
+                    End If
                 End If
 
-                Ventana.BringToFront()
-
-                wEntregas.Local = xLugar.Text.ToDecimal
-                wEntregas.TipoDoc = "BV"
-                wEntregas.NumDoc = xNumero.Text.ToDecimal
-                wEntregas.FechaEmi = wBoleta.Fecha
-                wEntregas.FechaEnt = Now
-                wEntregas.Usuario = "SYS"
-                wEntregas.Entregado = wModo
-
-                If qEntregas Is Nothing Then
-                    DC.T_Entregas.InsertOnSubmit(wEntregas)
-                End If
                 DC.SubmitChanges()
                 Limpiar()
 
@@ -344,28 +354,31 @@ Public Class Entregas
 
             If qFactura IsNot Nothing Then
                 wFactura = qFactura
-                wFactura.Estado = CChar(EstadosDoc.Entregada)
+                wFactura.Estado = CChar(wModo)
                 DC.SubmitChanges()
 
-                Dim wEntregas As New T_Entregas
-                Dim qEntregas = DC.T_Entregas.FirstOrDefault(Function(x) x.TipoDoc = "FV" And x.NumDoc = xNumero.Text.ToDecimal And x.Local = xLugar.Text.ToDecimal)
-                If qEntregas IsNot Nothing Then
-                    wEntregas = qEntregas
+                If wModo <> EstadosDoc.Removida Then
+                    Dim wEntregas As New T_Entregas
+                    Dim qEntregas = DC.T_Entregas.FirstOrDefault(Function(x) x.TipoDoc = "FV" And x.NumDoc = xNumero.Text.ToDecimal And x.Local = xLugar.Text.ToDecimal)
+                    If qEntregas IsNot Nothing Then
+                        wEntregas = qEntregas
+                    End If
+
+                    Ventana.BringToFront()
+
+                    wEntregas.Local = xLugar.Text.ToDecimal
+                    wEntregas.TipoDoc = "FV"
+                    wEntregas.NumDoc = xNumero.Text.ToDecimal
+                    wEntregas.FechaEmi = wFactura.FechaFac
+                    wEntregas.FechaEnt = Now
+                    wEntregas.Usuario = "SYS"
+                    wEntregas.Entregado = wModo
+
+                    If qEntregas Is Nothing Then
+                        DC.T_Entregas.InsertOnSubmit(wEntregas)
+                    End If
                 End If
 
-                Ventana.BringToFront()
-
-                wEntregas.Local = xLugar.Text.ToDecimal
-                wEntregas.TipoDoc = "FV"
-                wEntregas.NumDoc = xNumero.Text.ToDecimal
-                wEntregas.FechaEmi = wFactura.FechaFac
-                wEntregas.FechaEnt = Now
-                wEntregas.Usuario = "SYS"
-                wEntregas.Entregado = wModo
-
-                If qEntregas Is Nothing Then
-                    DC.T_Entregas.InsertOnSubmit(wEntregas)
-                End If
                 DC.SubmitChanges()
                 Limpiar()
 
@@ -427,7 +440,11 @@ Public Class Entregas
     End Sub
 
     Private Sub bPendiente_Click(sender As Object, e As EventArgs) Handles bPendiente.Click
-        Entregar_Pedido("N")
+        Entregar_Pedido(EstadosDoc.NoEstaba)
+    End Sub
+
+    Private Sub bSacar_Click(sender As Object, e As EventArgs) Handles bSacar.Click
+        Entregar_Pedido(EstadosDoc.Removida)
     End Sub
 End Class
 

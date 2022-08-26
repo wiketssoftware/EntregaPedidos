@@ -10,7 +10,7 @@ Module Funciones
     Public MaxDouble As Double = 999999999999999 '15 dígitos / Máximo para evitar notación científica en conversión
     Public Const P_EMPRESA As String = "Wikets Software"
     Public Const P_SISTEMA As String = "MarketONE"
-    Public Const VERSION As String = "1.1"
+    Public Const VERSION As String = "1.2"
     Public G_LOCALACTUAL As Decimal
     Public G_USUARIO As String
     Public G_BODEGA As Decimal
@@ -614,6 +614,8 @@ Public Structure EstadosDoc
     Public Const Anulada As String = "A"
     Public Const Normal As String = "C"
     Public Const Entregada As String = "E"
+    Public Const Removida As String = "R"
+    Public Const NoEstaba As String = "O"
 End Structure
 
 Public Class RespuestaServidor

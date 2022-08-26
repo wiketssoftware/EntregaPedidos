@@ -45,7 +45,7 @@ Public Class ReporteComanda
     
     Public Overrides Property FullResourceName() As String
         Get
-            Return "Pedidos.ReporteComanda.rpt"
+            Return "Entregas.ReporteComanda.rpt"
         End Get
         Set
             'Do nothing

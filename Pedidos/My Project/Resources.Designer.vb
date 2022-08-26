@@ -39,7 +39,7 @@ Namespace My.Resources
         Friend ReadOnly Property ResourceManager() As Global.System.Resources.ResourceManager
             Get
                 If Object.ReferenceEquals(resourceMan, Nothing) Then
-                    Dim temp As Global.System.Resources.ResourceManager = New Global.System.Resources.ResourceManager("Pedidos.Resources", GetType(Resources).Assembly)
+                    Dim temp As Global.System.Resources.ResourceManager = New Global.System.Resources.ResourceManager("Entregas.Resources", GetType(Resources).Assembly)
                     resourceMan = temp
                 End If
                 Return resourceMan
@@ -58,16 +58,6 @@ Namespace My.Resources
             Set
                 resourceCulture = value
             End Set
-        End Property
-        
-        '''<summary>
-        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        '''</summary>
-        Friend ReadOnly Property _new() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("new", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
         End Property
         
         '''<summary>
@@ -173,16 +163,6 @@ Namespace My.Resources
         '''<summary>
         '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property calc_ok24() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("calc-ok24", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        '''</summary>
         Friend ReadOnly Property cancel() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("cancel", resourceCulture)
@@ -236,16 +216,6 @@ Namespace My.Resources
         Friend ReadOnly Property cash24() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("cash24", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        '''</summary>
-        Friend ReadOnly Property cashier_ok24() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("cashier-ok24", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
@@ -396,26 +366,6 @@ Namespace My.Resources
         Friend ReadOnly Property Conectado24() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("Conectado24", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        '''</summary>
-        Friend ReadOnly Property database_check() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("database-check", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        '''</summary>
-        Friend ReadOnly Property database_delete2() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("database-delete2", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

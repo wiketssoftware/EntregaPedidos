@@ -11,7 +11,7 @@
     End Sub
 
     Private Sub bAceptar_Click(Optional sender As Object = Nothing, Optional e As EventArgs = Nothing) Handles bAceptar.Click
-        Entregas.G_OBSERVACIONCOMANDA = xObservacion.Text.Trim()
+        EntregaPedidos.G_OBSERVACIONCOMANDA = xObservacion.Text.Trim()
         DialogResult = DialogResult.OK
     End Sub
 

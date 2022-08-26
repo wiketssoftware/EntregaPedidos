@@ -58,7 +58,7 @@ Partial Class InputObservacionComanda
         Me.bAceptar.BackColor = System.Drawing.Color.White
         Me.bAceptar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.bAceptar.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.bAceptar.Image = Global.Pedidos.My.Resources.Resources.ok
+        Me.bAceptar.Image = Global.Entregas.My.Resources.Resources.ok
         Me.bAceptar.Location = New System.Drawing.Point(243, 58)
         Me.bAceptar.Name = "bAceptar"
         Me.bAceptar.Size = New System.Drawing.Size(100, 27)
@@ -72,7 +72,7 @@ Partial Class InputObservacionComanda
         Me.bCancelar.BackColor = System.Drawing.Color.White
         Me.bCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.bCancelar.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.bCancelar.Image = Global.Pedidos.My.Resources.Resources.cancel
+        Me.bCancelar.Image = Global.Entregas.My.Resources.Resources.cancel
         Me.bCancelar.Location = New System.Drawing.Point(123, 58)
         Me.bCancelar.Name = "bCancelar"
         Me.bCancelar.Size = New System.Drawing.Size(114, 27)
