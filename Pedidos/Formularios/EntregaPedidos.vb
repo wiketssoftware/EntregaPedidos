@@ -14,6 +14,8 @@ Public Class EntregaPedidos
     Public Estado_Amarillo As Decimal
     Public Estado_Rojo As Decimal
 
+    Public Omitir_Local As Decimal
+
     Public Property G_OBSERVACIONCOMANDA As String
 
     Protected Overrides Function ProcessCmdKey(ByRef msg As Message, ByVal keyData As Keys) As Boolean
@@ -32,6 +34,8 @@ Public Class EntregaPedidos
             MsgError($"No se puede utilizar Pedidos {vbCrLf}{resultado}.", "Error crítico")
             End
         End If
+
+        Omitir_Local = 3
 
         Dim wFormAcceso = New Acceso()
         wFormAcceso.Visible = False
@@ -226,8 +230,11 @@ Public Class EntregaPedidos
 
         sTablaEntregas.DataSource = Nothing
 
+        'Omitir_Local Local 3 = WEB, estos no se entregan
+        'Omitir_Local = 3
+
         'Blasoni debe ver local 1 y 3 como 1
-        Dim wBoletas = DC.T_BoGen.Where(Function(x) (x.Local = 1 Or x.Local = 3) And x.Fecha >= wFecha And x.Estado = EstadosDoc.Normal And x.Observaciones <> "")
+        Dim wBoletas = DC.T_BoGen.Where(Function(x) (x.Local = 1 Or x.Local = 2) And x.Fecha >= wFecha And x.Estado = EstadosDoc.Normal And x.Observaciones <> "")
         For Each bol In wBoletas
             DoEvents()
 
@@ -252,7 +259,7 @@ Public Class EntregaPedidos
         Next
 
 
-        Dim wFacturas = DC.T_FvGen.Where(Function(x) (x.Local = 1 Or x.Local = 3) And x.FechaFac >= wFecha And x.Estado = EstadosDoc.Normal And x.Observaciones <> "" And x.POS <> 99)
+        Dim wFacturas = DC.T_FvGen.Where(Function(x) (x.Local = 1 Or x.Local = 2) And x.FechaFac >= wFecha And x.Estado = EstadosDoc.Normal And x.Observaciones <> "" And x.POS <> 99)
         For Each fac In wFacturas
             DoEvents()
 
